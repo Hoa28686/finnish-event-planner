@@ -1,0 +1,104 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Summer BBQ in Töölö Park",
+      "date": "2025-06-15",
+      "location": "Töölönlahdenkatu 4, Helsinki",
+      "description": "Join us for grilled food, music, and games at Töölö Park.",
+      "lat": 60.1812,
+      "lng": 24.9337,
+      "image": "https://example.com/bbq.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Outdoor Coding Meetup",
+      "date": "2025-06-18",
+      "location": "Kaisaniemi Park, Helsinki",
+      "description": "Bring your laptop and code in nature!",
+      "lat": 60.1754,
+      "lng": 24.9457,
+      "image": "https://example.com/code.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Sauna & Swim Evening",
+      "date": "2025-06-20",
+      "location": "Löyly, Hernesaarenranta 4, Helsinki",
+      "description": "Enjoy a traditional Finnish sauna by the sea.",
+      "lat": 60.1552,
+      "lng": 24.9211,
+      "image": "https://example.com/sauna.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Flea Market Sunday",
+      "date": "2025-06-23",
+      "location": "Hakaniemi Market, Helsinki",
+      "description": "Sell or buy secondhand treasures with the community.",
+      "lat": 60.1805,
+      "lng": 24.9512,
+      "image": "https://example.com/fleamarket.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Jazz in the Park",
+      "date": "2025-06-25",
+      "location": "Esplanadi Park, Helsinki",
+      "description": "Live jazz concert in the heart of the city.",
+      "lat": 60.1675,
+      "lng": 24.9432,
+      "image": "https://example.com/jazz.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Nature Walk in Nuuksio",
+      "date": "2025-06-27",
+      "location": "Nuuksio National Park",
+      "description": "Guided hike through scenic trails and lakes.",
+      "lat": 60.3078,
+      "lng": 24.4997,
+      "image": "https://example.com/nuuksio.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Photography Workshop",
+      "date": "2025-06-28",
+      "location": "Seurasaari, Helsinki",
+      "description": "Learn nature and portrait photography in an open-air museum.",
+      "lat": 60.1869,
+      "lng": 24.8817,
+      "image": "https://example.com/photo.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Vegan Picnic Day",
+      "date": "2025-06-29",
+      "location": "Sinebrychoff Park, Helsinki",
+      "description": "A laid-back picnic with vegan food and friendly people.",
+      "lat": 60.1632,
+      "lng": 24.9323,
+      "image": "https://example.com/vegan.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Midnight Sun Yoga",
+      "date": "2025-06-30",
+      "location": "Lauttasaari Beach, Helsinki",
+      "description": "Evening yoga by the beach under the midnight sun.",
+      "lat": 60.1565,
+      "lng": 24.8631,
+      "image": "https://example.com/yoga.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Board Game Cafe Meetup",
+      "date": "2025-07-01",
+      "location": "Poromagia, Fredrikinkatu 61, Helsinki",
+      "description": "Meet new people and play classic or modern board games.",
+      "lat": 60.1636,
+      "lng": 24.9237,
+      "image": "https://example.com/games.jpg"
+    }
+  ]
+}
