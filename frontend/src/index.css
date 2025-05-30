@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Poppins&display=swap");
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -64,5 +65,146 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+/*_________css variables_________*/
+:root {
+  --header-height: 4rem;
+
+  /* color */
+  --title-color: black;
+  --text-color: black;
+  --text-white: white;
+  --link-color: #0141f2;
+  --hover-color: #0c960c;
+  --body-background: white;
+  --header-background: white;
+
+  /* font */
+  --body-font: "Poppins", sans-serif;
+  --second-font: "Mochiy Pop One", system-ui, sans-serif;
+  --logo-size: 1.75rem;
+  --title-size: 1.5rem;
+  --sub-title: 1.2rem;
+  --normal-font-size: 1rem;
+
+  /* larger font size for big screen */
+  --logo-size-large: 2rem;
+  --title-size-large: 1.7rem;
+  --sub-title-large: 1.5rem;
+  --normal-font-size-large: 1.2rem;
+
+  /* z index */
+  --z: 100;
+
+  /* gap */
+  --gap: 1.5rem;
+
+  /* border and shadow */
+  --border: 1px solid grey;
+  --border-radius: 0.5rem;
+  --shadow: 0 0.1rem 0.2rem #a5a5a5;
+
+  /* scale */
+  --scale: scale(1.05);
+}
+
+/*_________global reset and whole page_________*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background: var(--body-background);
+  color: var(--text-color);
+  padding-top: 7rem;
+  transition: background-color 0.6s;
+}
+
+main {
+  min-height: calc(100vh - 7rem);
+  margin-block: 2rem;
+}
+
+label,
+textarea,
+input,
+button {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+input,
+textarea,
+button,
+a {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+.active {
+  color: green;
+  text-decoration: underline;
+}
+h1 {
+  color: var(--title-color);
+  font-size: var(--title-size);
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0.5rem;
+}
+
+/*_________reusable_________*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+/* _________theme_________*/
+/* dark theme */
+.dark-theme {
+  --title-color: white;
+  --text-color: white;
+  --link-color: #2b63fd;
+  --body-background: black;
+  --header-background: #2d2d2d;
+  --scroll-background: #3e3e3e;
+  --shadow: 0 0 0.5rem #dedddd;
+}
+
+/* ________ breakpoint ________*/
+/* for tablet */
+@media screen and (min-width: 768px) {
+  .container {
+    width: 80%;
+    margin-inline: auto;
+  }
+}
+
+/* for desktop*/
+@media screen and (min-width: 992px) {
+  :root {
+    --logo-size: var(--logo-size-large);
+    --title-size: var(--title-size-large);
+    --sub-title: var(--sub-title-large);
+    --normal-font-size: var(--normal-font-size-large);
   }
 }
