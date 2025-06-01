@@ -8,6 +8,24 @@
   text-transform: capitalize;
   margin-block: 1rem;
 }
+.time,
+.location {
+  display: flex;
+  gap: 1rem;
+}
+.timeIcon,
+.locationIcon {
+  transform: translateY(20%);
+}
+.weatherContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+.weatherIcon {
+  object-fit: cover;
+}
 .mapView {
   height: 20rem;
   width: 100%;
