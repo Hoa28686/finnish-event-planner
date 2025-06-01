@@ -29,6 +29,7 @@
 .mapView {
   height: 20rem;
   width: 100%;
+  z-index: -2;
 }
 .eventImage {
   margin-block: 1.5rem;

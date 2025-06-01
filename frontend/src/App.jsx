@@ -31,7 +31,7 @@ function App() {
             <Route index element={<EventList eventData={eventData} />} />
             <Route path="/:id" element={<EventDetail />} />
             <Route path="/add-event" element={<AddEvent />} />
-            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/calendar" element={<Calendar events={eventData} />} />
             <Route path="/about" element={<About />} />
           </Route>
         </Routes>
