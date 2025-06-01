@@ -1,0 +1,18 @@
+.eventCard {
+  border: 0.1rem solid rgb(209, 208, 208);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin: 2rem;
+  padding: 1rem;
+  text-align: left;
+  width: 25rem;
+  background: var(--body-background);
+  text-transform: capitalize;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.eventCard:hover {
+  transform: var(--scale);
+  cursor: pointer;
+}

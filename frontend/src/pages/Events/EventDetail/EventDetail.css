@@ -1,0 +1,19 @@
+.eventDetail {
+  text-align: left;
+}
+.sticky {
+  width: 25rem;
+}
+.eventInfo {
+  text-transform: capitalize;
+  margin-block: 1rem;
+}
+.mapView {
+  height: 20rem;
+  width: 100%;
+}
+.eventImage {
+  margin-block: 1.5rem;
+  width: 100%;
+  object-fit: cover;
+}
