@@ -20,11 +20,26 @@
 .weatherContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
   margin-bottom: 1rem;
 }
 .weatherIcon {
-  object-fit: cover;
+  width: 5rem;
+  height: 5rem;
+  image-rendering: crisp-edges;
+  object-fit: contain;
+  padding: 0.3rem;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  background: radial-gradient(
+    circle at 30% 30%,
+    #bc62fc,
+    #616fff,
+    #659ef5,
+    #5f3df6,
+    #000000
+  );
 }
 .mapView {
   height: 20rem;

@@ -1,35 +1,6 @@
 .calendar {
   width: 100%;
 }
-
-:global(.react-calendar__tile) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100px;
-  overflow: hidden;
-  position: relative;
-}
-
-.foundEvents {
-  text-align: left;
-}
-.eventTitle {
-  font-size: 0.8rem;
-}
-:global(.react-calendar__tile)::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  border-bottom: var(--border);
-  width: 100%;
-}
-:global(.react-calendar__month-view__days__day) {
-  padding-bottom: 1rem;
-}
-:global(.react-calendar__month-view__weekdays) {
-  border-bottom: var(--border);
+:global(.rbc-header) {
+  padding: 1rem;
 }

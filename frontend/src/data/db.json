@@ -3,6 +3,8 @@
     {
       "id": "1",
       "title": "Summer BBQ in Töölö Park",
+      "start": "2025-06-15T12:00:00",
+      "end": "2025-06-15T16:00:00",
       "date": "2025-06-15",
       "location": "Töölönlahdenkatu 4, Helsinki",
       "description": "Come celebrate the joy of summer with a fun-filled BBQ at Töölö Park! We'll be serving up delicious grilled food, playing lively music, and enjoying a variety of outdoor games and activities. Whether you're coming with friends or meeting new people, this casual gathering is a great way to relax, eat well, and soak up the summer sun in one of Helsinki’s most beautiful green spaces.",
@@ -14,6 +16,8 @@
     {
       "id": "2",
       "title": "Outdoor Coding Meetup",
+      "start": "2025-06-18T10:00:00",
+      "end": "2025-06-18T14:00:00",
       "date": "2025-06-18",
       "location": "Kaisaniemi Park, Helsinki",
       "description": "Bring your laptop and join fellow tech enthusiasts for a relaxed coding session under the open sky at Kaisaniemi Park. This meetup is perfect for networking, collaborating on side projects, or simply sharing ideas with like-minded people. Whether you're a seasoned developer or just starting out, the welcoming atmosphere and fresh air will spark creativity and motivation.",
@@ -25,6 +29,8 @@
     {
       "id": "3",
       "title": "Sauna & Swim Evening",
+      "start": "2025-06-20T17:00:00",
+      "end": "2025-06-20T21:00:00",
       "date": "2025-06-20",
       "location": "Löyly, Hernesaarenranta 4, Helsinki",
       "description": "Experience Finnish wellness at its finest with an evening of sauna and sea swimming at Löyly. Enjoy the gentle heat of the wood-fired sauna followed by a refreshing dip in the cool Baltic waters. As the sun sets, relax on the terrace with friends, take in the stunning sea views, and let go of everyday stress in a truly serene environment.",
@@ -36,6 +42,8 @@
     {
       "id": "4",
       "title": "Flea Market Sunday",
+      "start": "2025-06-23T09:00:00",
+      "end": "2025-06-23T15:00:00",
       "date": "2025-06-23",
       "location": "Hakaniemi Market, Helsinki",
       "description": "Discover hidden treasures and unique finds at Flea Market Sunday in Hakaniemi. Browse through stalls filled with secondhand clothes, vintage items, handmade crafts, and more. It’s a vibrant community event where locals gather to sell, swap, and shop in a friendly and sustainable way. Don’t forget to grab a coffee and enjoy some street food while you stroll!",
@@ -47,6 +55,8 @@
     {
       "id": "5",
       "title": "Jazz in the Park",
+      "start": "2025-06-25T18:00:00",
+      "end": "2025-06-25T22:00:00",
       "date": "2025-06-25",
       "location": "Esplanadi Park, Helsinki",
       "description": "Settle in for an evening of smooth melodies and lively rhythms at Esplanadi Park’s open-air jazz concert. With talented local musicians performing in the heart of Helsinki, this event blends cultural richness with the relaxed vibe of a summer evening. Bring a picnic, relax on the grass, and let the music carry you away.",
@@ -58,6 +68,8 @@
     {
       "id": "6",
       "title": "Nature Walk in Nuuksio",
+      "start": "2025-06-27T09:00:00",
+      "end": "2025-06-27T13:00:00",
       "date": "2025-06-27",
       "location": "Nuuksio National Park",
       "description": "Escape the city and reconnect with nature on a guided walk through Nuuksio National Park. Explore scenic forest trails, crystal-clear lakes, and peaceful wilderness while learning about local wildlife and plants. Whether you're a nature lover or just looking for a peaceful break, this walk is the perfect way to refresh your body and mind.",
@@ -69,6 +81,8 @@
     {
       "id": "7",
       "title": "Photography Workshop",
+      "start": "2025-06-27T08:00:00",
+      "end": "2025-06-27T15:00:00",
       "date": "2025-06-28",
       "location": "Seurasaari, Helsinki",
       "description": "Join us for a hands-on photography workshop set in the charming outdoor museum of Seurasaari. Learn the fundamentals of portrait and nature photography from a professional instructor while capturing the beauty of traditional Finnish wooden buildings and lush surroundings. Great for beginners and hobbyists alike!",
@@ -80,6 +94,8 @@
     {
       "id": "8",
       "title": "Vegan Picnic Day",
+      "start": "2025-06-29T12:00:00",
+      "end": "2025-06-29T16:00:00",
       "date": "2025-06-29",
       "location": "Sinebrychoff Park, Helsinki",
       "description": "Celebrate plant-based living at this relaxed vegan picnic in the scenic Sinebrychoff Park. Bring your own vegan dishes to share or simply enjoy the wide range of cruelty-free snacks, drinks, and desserts provided by local vendors. Expect friendly vibes, interesting conversations, and a chance to connect with fellow food lovers.",
@@ -91,6 +107,8 @@
     {
       "id": "9",
       "title": "Midnight Sun Yoga",
+      "start": "2025-06-30T22:00:00",
+      "end": "2025-07-01T00:00:00",
       "date": "2025-06-30",
       "location": "Lauttasaari Beach, Helsinki",
       "description": "Stretch, breathe, and flow with the rhythm of the waves during this special beach yoga session under the midnight sun. Held at Lauttasaari Beach, this event offers a calming, energizing experience for yogis of all levels. Bring your mat and enjoy the serenity of twilight and nature combined.",
@@ -102,6 +120,8 @@
     {
       "id": "10",
       "title": "Board Game Cafe Meetup",
+      "start": "2025-07-01T18:00:00",
+      "end": "2025-07-01T22:00:00",
       "date": "2025-07-01",
       "location": "Poromagia, Fredrikinkatu 61, Helsinki",
       "description": "Looking for a fun way to meet new people? Join us at Poromagia for an evening of board games, laughter, and friendly competition. Whether you're into strategic Eurogames or casual party games, there's something for everyone. Newcomers and seasoned players welcome—just grab a drink, pick a game, and dive in!",
