@@ -7,7 +7,7 @@ const EventList = ({ eventData }) => {
       <h1>Event Category</h1>
       <div className="eventCategory">
         {eventData.map((event) => (
-          <CategoryCard category={event.category} />
+          <CategoryCard key={event.id} category={event.category} />
         ))}
       </div>
       <h1>EventList</h1>

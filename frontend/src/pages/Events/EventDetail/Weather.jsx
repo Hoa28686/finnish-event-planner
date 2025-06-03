@@ -25,11 +25,13 @@ const Weather = ({ geo }) => {
         <p>{weather.main.temp}°C</p>
         <p>💧 {weather.main.humidity}%</p>
       </div>
-      <img
-        src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
-        alt="weatherIcon"
-        className="weatherIcon"
-      />
+      <div className="iconWrapper">
+        <img
+          src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+          alt={weather.weather[0].description}
+          className="weatherIcon"
+        />
+      </div>
     </div>
   );
 };

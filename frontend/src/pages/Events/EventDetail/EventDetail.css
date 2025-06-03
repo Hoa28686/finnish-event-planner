@@ -20,15 +20,43 @@
 .weatherContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
   margin-bottom: 1rem;
 }
-.weatherIcon {
-  object-fit: cover;
+.iconWrapper {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
 }
+
+.iconWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #bc62fc,
+    #616fff,
+    #659ef5,
+    #5f3df6,
+    #000000
+  );
+  border-radius: 1rem;
+  z-index: -10;
+  filter: blur(10px);
+  opacity: 0.7;
+}
+.weatherIcon {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
 .mapView {
   height: 20rem;
   width: 100%;
+  z-index: -2;
 }
 .eventImage {
   margin-block: 1.5rem;

@@ -5,7 +5,8 @@
   margin: 2rem;
   padding: 1rem;
   text-align: left;
-  width: 25rem;
+  line-height: 1.8;
+  width: 22rem;
   background: var(--body-background);
   text-transform: capitalize;
   position: relative;
@@ -15,4 +16,17 @@
 .eventCard:hover {
   transform: var(--scale);
   cursor: pointer;
+}
+.time,
+.location {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: flex-start;
+}
+.timeIcon,
+.locationIcon {
+  width: 1rem;
+  height: 1rem;
+  padding: 0.1rem;
+  transform: translateY(40%);
 }

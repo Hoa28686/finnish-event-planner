@@ -10,6 +10,7 @@ import AddEvent from "./pages/AddEvent/AddEvent";
 import Calendar from "./pages/Calendar/Calendar";
 import useAxios from "./hooks/useAxios";
 import EventDetail from "./pages/Events/EventDetail/EventDetail";
+import EventCalendar from "./pages/Calendar/Calendar";
 
 function App() {
   const [eventData, setEventData] = useState([]);
@@ -18,7 +19,8 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setEventData(await get(eventApi));
+      let data = await get(eventApi);
+      setEventData(data);
     };
     fetchData();
   }, []);
@@ -31,7 +33,10 @@ function App() {
             <Route index element={<EventList eventData={eventData} />} />
             <Route path="/:id" element={<EventDetail />} />
             <Route path="/add-event" element={<AddEvent />} />
-            <Route path="/calendar" element={<Calendar />} />
+            <Route
+              path="/calendar"
+              element={<EventCalendar eventData={eventData} />}
+            />
             <Route path="/about" element={<About />} />
           </Route>
         </Routes>

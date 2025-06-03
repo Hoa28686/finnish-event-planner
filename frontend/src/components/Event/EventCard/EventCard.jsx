@@ -1,17 +1,19 @@
+import { time } from "../../../data/reusable";
 import "./EventCard.css";
-import { weekdays } from "../../../data/data";
 import { Link } from "react-router";
 
-const EventCard = ({ id, title, date, location }) => {
-  const dayIndex = new Date(date).getDay();
-
+const EventCard = ({ id, title, start, end, location }) => {
   return (
     <div className="eventCard">
       <h3>{title}</h3>
-      <p>
-        {weekdays[dayIndex]}, {date}
-      </p>
-      <p>{location}</p>
+      <div className="time">
+        <p className="timeIcon">🕐</p>
+        <p> {time(start, end)}</p>
+      </div>
+      <div className="location">
+        <p className="locationIcon" >📍</p>
+        <p>{location}</p>
+      </div>
       <div className="eventCardFooter">
         <Link to={`/${id}`}>See more</Link>
       </div>
