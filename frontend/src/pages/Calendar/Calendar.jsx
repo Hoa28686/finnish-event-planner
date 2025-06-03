@@ -66,6 +66,7 @@ const EventCalendar = ({ eventData }) => {
         onSelectEvent={dayClickHandler}
         eventPropGetter={eventPropGetter}
       />
+      
       {sameDayEvents.length > 0 ? (
         sameDayEvents.map((event) => <EventCard key={event.id} {...event} />)
       ) : (
