@@ -7,7 +7,18 @@ const useAxios = () => {
   const get = async (url) => {
     try {
       const res = await axios.get(url);
-      return res.data;
+      let data = res.data;
+      if (Array.isArray(data)) {
+        data = data.map((event) => ({
+          ...event,
+          start: new Date(event.start),
+          end: new Date(event.end),
+        }));
+      } else {
+        data.start = new Date(data.start);
+        data.end = new Date(data.end);
+      }
+      return data;
     } catch (e) {
       setError(e);
     } finally {

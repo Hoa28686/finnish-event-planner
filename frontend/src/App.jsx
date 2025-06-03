@@ -20,11 +20,6 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       let data = await get(eventApi);
-      data = data.map((event) => ({
-        ...event,
-        start: new Date(event.start),
-        end: new Date(event.end),
-      }));
       setEventData(data);
     };
     fetchData();

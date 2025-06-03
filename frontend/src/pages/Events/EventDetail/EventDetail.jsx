@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { weekdays } from "../../../data/data";
+
 import useAxios from "../../../hooks/useAxios";
 import "./EventDetail.css";
 import MapView from "./MapView";
 import Weather from "./Weather";
 import { IoMdTime } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
+import { time } from "../../../data/reusable";
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState({});
@@ -21,8 +22,6 @@ const EventDetail = () => {
     fetchData();
   }, [id]);
 
-  const dayIndex = new Date(event.date).getDay();
-
   return (
     <div className="container eventDetail">
       <div className="sticky">
@@ -30,9 +29,7 @@ const EventDetail = () => {
           <h3>{event.title}</h3>
           <div className="time">
             <IoMdTime className="timeIcon" />
-            <p>
-              {weekdays[dayIndex]}, {event.date}
-            </p>
+            {event.start && <p>{time(event.start, event.end)}</p>}
           </div>
           <div className="location">
             <IoLocationOutline className="locationIcon" />

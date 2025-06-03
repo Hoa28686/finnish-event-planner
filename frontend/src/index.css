@@ -80,6 +80,9 @@ button:focus-visible {
   --hover-color: #0c960c;
   --body-background: white;
   --header-background: white;
+  --calendar-bg: #ffffff;
+  --secondary-background: #beff93;
+  --off-range-bg: #f1f1f1;
 
   /* font */
   --body-font: "Poppins", sans-serif;
@@ -186,8 +189,12 @@ ul {
   --link-color: #2b63fd;
   --body-background: black;
   --header-background: #2d2d2d;
+  --secondary-background: #3e3e3e;
+  --calendar-bg: #3e3e3e;
   --scroll-background: #3e3e3e;
   --shadow: 0 0 0.5rem #dedddd;
+  --off-range-bg: #626262;
+  --border: 1px solid white;
 }
 
 /* ________ breakpoint ________*/
