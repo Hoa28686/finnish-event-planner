@@ -7,8 +7,8 @@ const Root = () => {
   return (
     <>
       <ScrollUp />
-      <Header />
-      <main>
+      <Header className="container" />
+      <main className="container">
         <Outlet />
       </main>
       <Footer />

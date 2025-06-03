@@ -36,7 +36,7 @@ const Header = () => {
     <header
       className={`${styles.header} ${showMenu ? styles["show-menu"] : ""}`}
     >
-      <div className={`container ${styles.headerContainer}`}>
+      <div className={styles.headerContainer}>
         <Link to="/" className={styles["nav-logo"]}>
           Event Planner
         </Link>

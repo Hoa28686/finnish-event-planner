@@ -1,0 +1,50 @@
+.addForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.addFormRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.2rem;
+}
+
+.label {
+  width: 36%;
+}
+
+.input {
+  width: 64%;
+  border: var(--border);
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+}
+
+.input:focus {
+  background-color: #464646;
+  color: white;
+}
+
+.button {
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  border: 1px solid transparent;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  background-color: var(--hover-color);
+  margin: 2rem;
+  transition: color 0.2s transform 0.8s;
+}
+.button:hover {
+  box-shadow: var(--shadow);
+  color: var(--text-white);
+  transform: var(--scale);
+}
+@media screen and (min-width: 768px) {
+  .addFormRow {
+    width: 70%;
+  }
+}
