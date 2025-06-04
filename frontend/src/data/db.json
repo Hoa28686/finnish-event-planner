@@ -139,6 +139,58 @@
       "lng": 24.9237,
       "image": "https://example.com/games.jpg",
       "category": "games"
+    },
+    {
+      "id": "1749075379235",
+      "title": "\\zx\\x",
+      "start": "2025-06-05T03:16",
+      "end": "2025-06-06T01:16",
+      "location": "Töölönlahdenkatu 4, Helsinki",
+      "description": "",
+      "image": "",
+      "category": "other",
+      "lat": 60.1741861,
+      "lng": 24.9378675,
+      "isFavorite": false
+    },
+    {
+      "id": "1749075452731",
+      "title": "xcvzv",
+      "start": "2025-06-05T01:20",
+      "end": "2025-06-06T01:17",
+      "location": "aleksanterinkatu 11, helsinki",
+      "description": "zf",
+      "image": "",
+      "category": "other",
+      "lat": 60.1690367,
+      "lng": 24.9469201,
+      "isFavorite": false
+    },
+    {
+      "id": "1749075522313",
+      "title": "asdasdf",
+      "start": "2025-06-13T01:18",
+      "end": "2025-06-11T01:18",
+      "location": "dfaf",
+      "description": "",
+      "image": "",
+      "category": "other",
+      "lat": 49.4624886,
+      "lng": 10.9941578,
+      "isFavorite": false
+    },
+    {
+      "id": "1749075592980",
+      "title": "xcv",
+      "start": "2025-06-13T01:19",
+      "end": "2025-06-10T01:19",
+      "location": "dfd",
+      "description": "",
+      "image": "",
+      "category": "other",
+      "lat": 14.032951,
+      "lng": 44.424548,
+      "isFavorite": false
     }
   ]
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./AddEvent.module.css";
 import useAxios from "../../hooks/useAxios";
 import { useNavigate } from "react-router";
+import { localTime } from "../../data/reusable";
 
 const emptyForm = {
   title: "",
@@ -14,7 +15,6 @@ const emptyForm = {
 };
 const AddEvent = ({ eventApi, onAddEvent }) => {
   const [formData, setFormData] = useState(emptyForm);
-  const [timeError, setTimeError] = useState("");
   const { get, error: getError } = useAxios();
   const { post, error: postError } = useAxios();
 
@@ -33,6 +33,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
       console.error("Geocode error: ", getError.message);
       return;
     }
+
     const lat = parseFloat(data[0].lat);
     const lng = parseFloat(data[0].lon);
     return { lat, lng };
@@ -40,17 +41,6 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const now = new Date();
-    const start = new Date(formData.start);
-    const end = new Date(formData.end);
-    if (start < now || start >= end) {
-      setTimeError(
-        "Start time must be in the future, and end time must be after start time. "
-      );
-      // setFormData(emptyForm);
-      return;
-    }
 
     const { lat, lng } = await geoConvert(formData.location);
     const newEvent = {
@@ -95,6 +85,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
             value={formData.start}
             onChange={handleChange}
             className={styles.start}
+            min={localTime()}
             required
           />
         </div>
@@ -107,6 +98,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
             value={formData.end}
             onChange={handleChange}
             className={styles.end}
+            min={formData.start ? formData.start : localTime()}
             required
           />
         </div>
@@ -145,7 +137,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
         <button type="submit" className={styles.button}>
           Add
         </button>
-        {timeError && <p className={styles.error}>{timeError}</p>}
+    
       </form>
     </>
   );

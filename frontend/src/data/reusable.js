@@ -15,6 +15,12 @@ export const time = (startDate, endDate) => {
   return timeRange;
 };
 
+export const localTime = () => {
+  const now = new Date();
+  const difToUTC = now.getTimezoneOffset();
+  const local = now.getTime() - difToUTC * 60 * 1000;
+  return new Date(local).toISOString().slice(0, 16);
+};
 
 export const categoryColors = {
   food: "#EF4444",
