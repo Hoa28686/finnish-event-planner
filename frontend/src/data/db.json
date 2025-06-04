@@ -7,10 +7,10 @@
       "start": "2025-06-15T00:30",
       "end": "2025-06-17T12:00",
       "date": "2025-06-15",
-      "location": "Töölönlahdenkatu 4, Helsinki",
+      "location": "Pekankatu 5A,helsinki",
       "description": "Come celebrate the joy of summer with a fun-filled BBQ at Töölö Park! We'll be serving up delicious grilled food, playing lively music, and enjoying a variety of outdoor games and activities. Whether you're coming with friends or meeting new people, this casual gathering is a great way to relax, eat well, and soak up the summer sun in one of Helsinki’s most beautiful green spaces.",
-      "lat": 60.1738,
-      "lng": 24.938,
+      "lat": "60.2515854",
+      "lng": "25.0148535",
       "image": "https://cdn.greenvelope.com/blog/wp-content/uploads/family-having-a-summer-BBQ-party.jpeg",
       "category": "food"
     },
@@ -190,6 +190,45 @@
       "category": "other",
       "lat": 14.032951,
       "lng": 44.424548,
+      "isFavorite": false
+    },
+    {
+      "id": "1749078022176",
+      "title": "asfdsa",
+      "start": "2025-06-06T02:00",
+      "end": "2025-06-14T02:00",
+      "location": "afa",
+      "description": "",
+      "image": "",
+      "category": "other",
+      "lat": "41.9838088",
+      "lng": "8.7966629",
+      "isFavorite": false
+    },
+    {
+      "id": "1749078076533",
+      "title": "afdasf",
+      "start": "2025-06-12T02:01",
+      "end": "2025-06-21T02:01",
+      "location": "Pekankatu 5a, helsinki",
+      "description": "",
+      "image": "",
+      "category": "other",
+      "lat": "60.2515854",
+      "lng": "25.0148535",
+      "isFavorite": false
+    },
+    {
+      "id": "1749078988442",
+      "title": "adad",
+      "start": "2025-06-12T02:16",
+      "end": "2025-07-04T02:16",
+      "location": "Töölönlahdenkatu 4, Helsinki",
+      "description": "",
+      "image": "",
+      "category": "other",
+      "lat": "60.1741861",
+      "lng": "24.9378675",
       "isFavorite": false
     }
   ]

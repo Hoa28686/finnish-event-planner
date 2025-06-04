@@ -1,4 +1,6 @@
 import { format, isSameDay } from "date-fns";
+
+
 export const time = (startDate, endDate) => {
   const start = new Date(startDate);
   const end = new Date(endDate);
@@ -21,6 +23,7 @@ export const localTime = () => {
   const local = now.getTime() - difToUTC * 60 * 1000;
   return new Date(local).toISOString().slice(0, 16);
 };
+
 
 export const categoryColors = {
   food: "#EF4444",

@@ -3,6 +3,7 @@ import { localTime, time } from "../../../data/reusable";
 import styles from "./EventCard.module.css";
 import { Link } from "react-router";
 import _ from "lodash";
+import useGeo from "../../../hooks/useGeo";
 
 const EventCard = ({
   id,
@@ -19,21 +20,25 @@ const EventCard = ({
   const [message, setMessage] = useState("");
   const prevInfo = { title, start, end, location, description };
   const [newInfo, setNewInfo] = useState(prevInfo);
+  const { geoConvert } = useGeo();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setNewInfo((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!newInfo.title || !newInfo.start || !newInfo.end || !newInfo.location) {
       setMessage("All fields are required.");
       return;
     }
+    const { lat, lng } = await geoConvert(newInfo.location);
+    const updatedInfo = { ...newInfo, lat, lng };
 
-    handleInfoChange(id, newInfo);
+    handleInfoChange(id, updatedInfo);
     setEditing(false);
     setMessage("Saved successfully!");
     setTimeout(() => setMessage(""), 1500);
