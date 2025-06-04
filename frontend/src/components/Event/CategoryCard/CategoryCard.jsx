@@ -1,8 +1,8 @@
-import "./CategoryCard.css";
+import styles from "./CategoryCard.module.css";
 
 const CategoryCard = ({ category }) => {
   return (
-    <div className="categoryCard">
+    <div className={styles.categoryCard}>
       <p>{category}</p>
     </div>
   );

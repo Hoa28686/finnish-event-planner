@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Root from "./pages/Root";
 import About from "./pages/About/About";
 import EventList from "./pages/Events/EventList/EventList";
 import AddEvent from "./pages/AddEvent/AddEvent";
-import Calendar from "./pages/Calendar/Calendar";
+import EventCalendar from "./pages/Calendar/Calendar";
 import useAxios from "./hooks/useAxios";
 import EventDetail from "./pages/Events/EventDetail/EventDetail";
-import EventCalendar from "./pages/Calendar/Calendar";
 
 function App() {
   const [eventData, setEventData] = useState([]);
   const eventApi = "http://localhost:3001/events";
-  const { get, post, patch, loading, error } = useAxios();
+  const { get, patch, loading, error } = useAxios();
+  const { remove, error: deleteError } = useAxios();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,14 +23,44 @@ function App() {
     fetchData();
   }, []);
 
+  const addEvent = (newEvent) => {
+    setEventData((prev) => [...prev, newEvent]);
+  };
+
+  const handleInfoChange = async (id, newInfo) => {
+    const updatedInfo = await patch(eventApi, id, newInfo);
+    setEventData((prev) =>
+      prev.map((event) => (event.id === id ? updatedInfo : event))
+    );
+  };
+
+  const deleteEvent = async (id) => {
+    await remove(eventApi, id);
+    setEventData((prev) => prev.filter((event) => event.id !== id));
+  };
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Root />}>
-            <Route index element={<EventList eventData={eventData} />} />
+            <Route
+              index
+              element={
+                <EventList
+                  eventData={eventData}
+                  handleInfoChange={handleInfoChange}
+                  error={error}
+                  loading={loading}
+                  deleteEvent={deleteEvent}
+                  deleteError={deleteError}
+                />
+              }
+            />
             <Route path="/:id" element={<EventDetail />} />
-            <Route path="/add-event" element={<AddEvent />} />
+            <Route
+              path="/add-event"
+              element={<AddEvent eventApi={eventApi} onAddEvent={addEvent} />}
+            />
             <Route
               path="/calendar"
               element={<EventCalendar eventData={eventData} />}

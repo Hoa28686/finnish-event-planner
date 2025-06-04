@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
-import "./EventDetail.css";
+import styles from "./EventDetail.module.css";
+
 const Weather = ({ geo }) => {
   const [weather, setWeather] = useState(null);
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
@@ -12,24 +13,24 @@ const Weather = ({ geo }) => {
       const fetchWeather = async () => {
         const weatherData = await get(apiUrl);
         setWeather(weatherData);
-        console.log(weatherData);
+        // console.log(weatherData);
       };
       fetchWeather();
     }
   }, [geo]);
   if (loading) return <p>Loading weather forecast.....</p>;
   return (
-    <div className="weatherContainer">
-      <div className="weatherInfo">
+    <div className={styles.weatherContainer}>
+      <div className={styles.weatherInfo}>
         <p>{weather.weather[0].description}</p>
         <p>{weather.main.temp}°C</p>
         <p>💧 {weather.main.humidity}%</p>
       </div>
-      <div className="iconWrapper">
+      <div className={styles.iconWrapper}>
         <img
           src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
           alt={weather.weather[0].description}
-          className="weatherIcon"
+          className={styles.weatherIcon}
         />
       </div>
     </div>

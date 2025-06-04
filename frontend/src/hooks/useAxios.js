@@ -7,18 +7,7 @@ const useAxios = () => {
   const get = async (url) => {
     try {
       const res = await axios.get(url);
-      let data = res.data;
-      if (Array.isArray(data)) {
-        data = data.map((event) => ({
-          ...event,
-          start: new Date(event.start),
-          end: new Date(event.end),
-        }));
-      } else {
-        data.start = new Date(data.start);
-        data.end = new Date(data.end);
-      }
-      return data;
+      return res.data;
     } catch (e) {
       setError(e);
     } finally {
@@ -42,8 +31,16 @@ const useAxios = () => {
       setError(e);
     }
   };
+  const remove = async (url, id) => {
+    try {
+      const res = await axios.delete(`${url}/${id}`);
+      return res.data;
+    } catch (e) {
+      setError(e);
+    }
+  };
 
-  return { get, post, patch, loading, error };
+  return { get, post, patch, remove, loading, error };
 };
 
 export default useAxios;

@@ -1,10 +1,10 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import "./EventDetail.css";
+import styles from "./EventDetail.module.css";
 
 const MapView = ({ geo, title, location }) => {
   return (
-    <MapContainer center={geo} zoom={13} className="mapView">
+    <MapContainer center={geo} zoom={13} className={styles.mapView}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -1,0 +1,12 @@
+.eventCategory {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.loading {
+  text-align: center;
+  margin: 10rem auto;
+}
+.error {
+  color: #ff4500;
+}
