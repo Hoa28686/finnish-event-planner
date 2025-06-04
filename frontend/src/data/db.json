@@ -2,9 +2,10 @@
   "events": [
     {
       "id": "1",
+      "isFavorite": false,
       "title": "Summer BBQ in Töölö Park",
-      "start": "2025-06-15T12:30:00",
-      "end": "2025-06-16T16:00:00",
+      "start": "2025-06-15T00:30",
+      "end": "2025-06-17T12:00",
       "date": "2025-06-15",
       "location": "Töölönlahdenkatu 4, Helsinki",
       "description": "Come celebrate the joy of summer with a fun-filled BBQ at Töölö Park! We'll be serving up delicious grilled food, playing lively music, and enjoying a variety of outdoor games and activities. Whether you're coming with friends or meeting new people, this casual gathering is a great way to relax, eat well, and soak up the summer sun in one of Helsinki’s most beautiful green spaces.",
@@ -15,6 +16,7 @@
     },
     {
       "id": "2",
+      "isFavorite": false,
       "title": "Outdoor Coding Meetup",
       "start": "2025-06-18T10:00:00",
       "end": "2025-06-18T14:00:00",
@@ -28,6 +30,7 @@
     },
     {
       "id": "3",
+      "isFavorite": false,
       "title": "Sauna & Swim Evening",
       "start": "2025-06-20T17:00:00",
       "end": "2025-06-20T21:00:00",
@@ -41,6 +44,7 @@
     },
     {
       "id": "4",
+      "isFavorite": false,
       "title": "Flea Market Sunday",
       "start": "2025-06-23T09:00:00",
       "end": "2025-06-24T15:00:00",
@@ -54,6 +58,7 @@
     },
     {
       "id": "5",
+      "isFavorite": false,
       "title": "Jazz in the Park",
       "start": "2025-06-25T18:00:00",
       "end": "2025-06-25T22:00:00",
@@ -67,6 +72,7 @@
     },
     {
       "id": "6",
+      "isFavorite": false,
       "title": "Nature Walk in Nuuksio",
       "start": "2025-06-27T09:00:00",
       "end": "2025-06-27T13:00:00",
@@ -80,6 +86,7 @@
     },
     {
       "id": "7",
+      "isFavorite": false,
       "title": "Photography Workshop",
       "start": "2025-06-27T08:00:00",
       "end": "2025-06-27T15:00:00",
@@ -93,6 +100,7 @@
     },
     {
       "id": "8",
+      "isFavorite": false,
       "title": "Vegan Picnic Day",
       "start": "2025-06-29T12:00:00",
       "end": "2025-06-29T16:00:00",
@@ -106,6 +114,7 @@
     },
     {
       "id": "9",
+      "isFavorite": false,
       "title": "Midnight Sun Yoga",
       "start": "2025-06-30T22:00:00",
       "end": "2025-07-01T00:00:00",
@@ -119,6 +128,7 @@
     },
     {
       "id": "10",
+      "isFavorite": false,
       "title": "Board Game Cafe Meetup",
       "start": "2025-07-01T18:00:00",
       "end": "2025-07-01T22:00:00",

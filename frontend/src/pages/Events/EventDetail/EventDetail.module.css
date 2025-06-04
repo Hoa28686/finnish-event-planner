@@ -1,5 +1,6 @@
 .eventDetail {
   text-align: left;
+  line-height: 1.8;
 }
 .sticky {
   width: 25rem;
@@ -12,17 +13,20 @@
 .location {
   display: flex;
   gap: 1rem;
+  line-height: 2.5;
+  align-items: center;
 }
 .timeIcon,
 .locationIcon {
-  transform: translateY(20%);
+  font-size: 1.5rem;
+  transform: translateY(-15%);
 }
 .weatherContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 1rem;
+  gap: 4rem;
+  margin-block: 1rem 2rem;
 }
 .iconWrapper {
   position: relative;
@@ -62,4 +66,7 @@
   margin-block: 1.5rem;
   width: 100%;
   object-fit: cover;
+}
+.detail {
+  margin-block: 1.5rem;
 }

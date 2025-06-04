@@ -7,7 +7,7 @@ const Root = () => {
   return (
     <>
       <ScrollUp />
-      <Header className="container" />
+      <Header />
       <main className="container">
         <Outlet />
       </main>

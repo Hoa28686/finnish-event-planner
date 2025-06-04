@@ -76,6 +76,7 @@ button:focus-visible {
   --title-color: black;
   --text-color: black;
   --text-white: white;
+  --placeholder-color: #757575;
   --link-color: #0141f2;
   --hover-color: #0c960c;
   --body-background: white;
@@ -186,6 +187,7 @@ ul {
 .dark-theme {
   --title-color: white;
   --text-color: white;
+  --placeholder-color: #d9d9d9;
   --link-color: #2b63fd;
   --body-background: black;
   --header-background: #2d2d2d;
@@ -197,6 +199,9 @@ ul {
   --border: 1px solid white;
 }
 
+.dark-theme input[type="datetime-local"] {
+  color-scheme: dark;
+}
 /* ________ breakpoint ________*/
 /* for tablet */
 @media screen and (min-width: 768px) {

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-
+import styles from "./EventDetail.module.css";
 import useAxios from "../../../hooks/useAxios";
-import "./EventDetail.css";
 import MapView from "./MapView";
 import Weather from "./Weather";
 import { IoMdTime } from "react-icons/io";
@@ -11,7 +10,7 @@ import { time } from "../../../data/reusable";
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState({});
-  const [geo, setGeo] = useState([]);
+  const [geo, setGeo] = useState({});
   const { get } = useAxios();
   useEffect(() => {
     const fetchData = async () => {
@@ -23,16 +22,16 @@ const EventDetail = () => {
   }, [id]);
 
   return (
-    <div className="container eventDetail">
-      <div className="sticky">
-        <div className="eventInfo">
-          <h3>{event.title}</h3>
-          <div className="time">
-            <IoMdTime className="timeIcon" />
+    <div className={styles.eventDetail}>
+      <div className={styles.sticky}>
+        <h3>{event.title}</h3>
+        <div className={styles.eventInfo}>
+          <div className={styles.time}>
+            <IoMdTime className={styles.timeIcon} />
             {event.start && <p>{time(event.start, event.end)}</p>}
           </div>
-          <div className="location">
-            <IoLocationOutline className="locationIcon" />
+          <div className={styles.location}>
+            <IoLocationOutline className={styles.locationIcon} />
             <p>{event.location}</p>
           </div>
         </div>
@@ -45,13 +44,15 @@ const EventDetail = () => {
         )}
       </div>
       <div>
-        <img
-          loading="lazy"
-          src={event.image}
-          alt="event image"
-          className="eventImage"
-        />
-        <h3>Details</h3>
+        {event.image && (
+          <img
+            loading="lazy"
+            src={event.image}
+            alt="event image"
+            className={styles.eventImage}
+          />
+        )}
+        <h3 className={styles.detail}>Details</h3>
         <p>{event.description}</p>
       </div>
     </div>

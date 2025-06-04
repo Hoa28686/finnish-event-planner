@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styles from "./AddEvent.module.css";
+import useAxios from "../../hooks/useAxios";
+import { useNavigate } from "react-router";
 
 const emptyForm = {
   title: "",
@@ -7,158 +9,143 @@ const emptyForm = {
   end: "",
   location: "",
   description: "",
-  imageUrl: "",
+  image: "",
+  category: "other",
 };
-const AddEvent = () => {
-  const [formdata, setFormData] = useState(emptyForm);
+const AddEvent = ({ eventApi, onAddEvent }) => {
+  const [formData, setFormData] = useState(emptyForm);
+  const [timeError, setTimeError] = useState("");
+  const { get, error: getError } = useAxios();
+  const { post, error: postError } = useAxios();
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const geoConvert = async (location) => {
+    const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
+    const apiUrl = `https://us1.locationiq.com/v1/search?key=${apiKey}&q=${location}&format=json&limit=1`;
+    const data = await get(apiUrl);
+    if (getError) {
+      console.error("Geocode error: ", getError.message);
+      return;
+    }
+    const lat = parseFloat(data[0].lat);
+    const lng = parseFloat(data[0].lon);
+    return { lat, lng };
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const now = new Date();
+    const start = new Date(formData.start);
+    const end = new Date(formData.end);
+    if (start < now || start >= end) {
+      setTimeError(
+        "Start time must be in the future, and end time must be after start time. "
+      );
+      // setFormData(emptyForm);
+      return;
+    }
+
+    const { lat, lng } = await geoConvert(formData.location);
+    const newEvent = {
+      ...formData,
+      id: Date.now().toString(),
+      lat: lat,
+      lng: lng,
+      isFavorite: false,
+    };
+    // console.log(newEvent);
+
+    const addedEvent = await post(eventApi, newEvent);
+    if (postError) {
+      console.error(postError.message);
+      return;
+    }
+
+    onAddEvent(addedEvent);
+    setFormData(emptyForm);
+    navigate("/");
+  };
+
   return (
     <>
       <h1>Add new event</h1>
-      <form onSubmit={handleSubmit} className={`${styles.addForm}`}>
-        <div className={styles.addFormRow}>
-          <label htmlFor="name" className={styles.label}>
-            Name:
-          </label>
+      <form onSubmit={handleSubmit} className={styles.addForm}>
+        <input
+          placeholder="Title"
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          required
+          className={styles.input}
+        />
+
+        <div className={`${styles.input} ${styles.time}`}>
+          <label>From</label>
           <input
-            id="name"
-            type="text"
-            name="name"
-            value={formData.name}
+            type="datetime-local"
+            name="start"
+            value={formData.start}
             onChange={handleChange}
+            className={styles.start}
             required
-            className={styles.input}
           />
         </div>
-        <div className={styles.addFormRow}>
-          <label htmlFor="title" className={styles.label}>
-            Title:
-          </label>
+
+        <div className={`${styles.input} ${styles.time}`}>
+          <label>To</label>
           <input
-            id="title"
-            type="text"
-            name="title"
-            value={formData.title}
+            type="datetime-local"
+            name="end"
+            value={formData.end}
             onChange={handleChange}
+            className={styles.end}
             required
-            className={styles.input}
           />
         </div>
-        <div className={styles.addFormRow}>
-          <label htmlFor="salary" className={styles.label}>
-            Salary:
-          </label>
-          <input
-            id="salary"
-            type="number"
-            step="any"
-            name="salary"
-            value={formData.salary}
-            onChange={handleChange}
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.addFormRow}>
-          <label htmlFor="phone" className={styles.label}>
-            Phone:
-          </label>
-          <input
-            id="phone"
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.addFormRow}>
-          <label htmlFor="email" className={styles.label}>
-            Email:
-          </label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.addFormRow}>
-          <label htmlFor="animal" className={styles.label}>
-            Animal:
-          </label>
-          <input
-            id="animal"
-            type="text"
-            name="animal"
-            value={formData.animal}
-            onChange={handleChange}
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.addFormRow}>
-          <label htmlFor="startDate" className={styles.label}>
-            Start date:
-          </label>
-          <input
-            id="startDate"
-            type="date"
-            name="startDate"
-            value={formData.startDate}
-            onChange={handleChange}
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.addFormRow}>
-          <label htmlFor="location" className={styles.label}>
-            Location:
-          </label>
-          <input
-            id="location"
-            type="text"
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.addFormRow}>
-          <label htmlFor="department" className={styles.label}>
-            Department:
-          </label>
-          <input
-            id="department"
-            type="text"
-            name="department"
-            value={formData.department}
-            onChange={handleChange}
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.addFormRow}>
-          <label htmlFor="skills" className={styles.label}>
-            Skills:
-          </label>
-          <input
-            id="skills"
-            type="text"
-            name="skills"
-            value={formData.skills}
-            onChange={handleChange}
-            required
-            className={styles.input}
-          />
-        </div>
+
+        <input
+          placeholder="Location"
+          type="text"
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+          className={styles.input}
+          required
+        />
+        {/* <select name="category" >Category</select>
+
+        <input
+          placeholder="Category"
+          type="text"
+          
+          value={formData.category}
+          onChange={handleChange}
+          className={styles.input}
+          
+        />
+         */}
+
+        <textarea
+          placeholder="Description"
+          type="text"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          className={`${styles.input} ${styles.textArea}`}
+        />
+
         <button type="submit" className={styles.button}>
           Add
         </button>
+        {timeError && <p className={styles.error}>{timeError}</p>}
       </form>
     </>
   );
