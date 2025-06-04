@@ -29,6 +29,12 @@ const EventCalendar = ({ eventData }) => {
 
   const [sameDayEvents, setSameDayEvents] = useState([]);
 
+  const convertedEvents = eventData.map((event) => ({
+    ...event,
+    start: new Date(event.start),
+    end: new Date(event.end),
+  }));
+
   const dayClickHandler = (slotInfo) => {
     const slotStart = slotInfo.start;
     const slotEnd = slotInfo.end;
@@ -53,7 +59,7 @@ const EventCalendar = ({ eventData }) => {
 
       <Calendar
         localizer={localizer}
-        events={eventData}
+        events={convertedEvents}
         startAccessor="start"
         endAccessor="end"
         style={{ minHeight: "32rem" }}
@@ -66,7 +72,7 @@ const EventCalendar = ({ eventData }) => {
         onSelectEvent={dayClickHandler}
         eventPropGetter={eventPropGetter}
       />
-      
+
       {sameDayEvents.length > 0 ? (
         sameDayEvents.map((event) => <EventCard key={event.id} {...event} />)
       ) : (

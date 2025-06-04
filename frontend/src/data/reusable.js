@@ -15,6 +15,7 @@ export const time = (startDate, endDate) => {
   return timeRange;
 };
 
+
 export const categoryColors = {
   food: "#EF4444",
   tech: "#0EA5E9",
