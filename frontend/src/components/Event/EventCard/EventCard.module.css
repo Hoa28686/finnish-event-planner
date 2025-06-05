@@ -2,20 +2,41 @@
   border: 0.1rem solid rgb(209, 208, 208);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  margin: 2rem;
   padding: 1rem;
   text-align: left;
   line-height: 1.8;
   width: 25rem;
+  margin-block: 2rem;
   background: var(--body-background);
   text-transform: capitalize;
-  /* position: relative; */
-  transition: transform 0.3s;
+  position: relative;
+  transition: boxShadow 0.3s ease;
 }
-
 .eventCard:hover {
-  transform: var(--scale);
+  box-shadow: 0 0.2rem 0.4rem #a5a5a5;
+}
+.favorite {
+  background: var(--body-background);
+  text-shadow: 0 0.1rem 0.3rem #a5a5a5;
+  border-radius: 0 0 0 2.5rem;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
   cursor: pointer;
+  margin: 0.1rem;
+  padding: 0.4rem 0.5rem;
+}
+.eventImage {
+  object-fit: cover;
+  width: 100%;
+  height: 16rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+}
+.category {
+  font-size: 0.8rem;
+  color: grey;
 }
 .time {
   white-space: pre-line;
@@ -40,7 +61,42 @@
   padding-left: 0.2rem;
 }
 
+.weatherContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  position: relative;
+  padding-inline: 1rem;
+}
+
+.weatherContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #616fff,
+    #bc62fc,
+    #659ef5,
+    #bc62fc,
+    #5f3df6
+  );
+  border-radius: 1rem;
+  opacity: 0.5;
+  z-index: -100;
+}
+.weatherIcon {
+  z-index: 10;
+  width: 3rem;
+  height: 3rem;
+}
+.cardFooterContainer{
+  position:relative;
+}
 .eventCardFooter {
+  position: relative;
+  bottom: 0;
   display: flex;
   justify-content: space-between;
   border-top: var(--border);
@@ -93,4 +149,10 @@
 .disabled {
   color: grey;
   pointer-events: none;
+}
+
+@media screen and (min-width: 768px) {
+  .eventCard {
+    margin: 2rem;
+  }
 }

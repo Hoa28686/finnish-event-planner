@@ -1,21 +1,26 @@
+import { useState } from "react";
 import useAxios from "../hooks/useAxios";
 
 const useGeo = () => {
-  const { get, error: getError } = useAxios();
+  const [geoError, setGeoError] = useState(null);
+  const { get } = useAxios();
 
   const geoConvert = async (location) => {
-    const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
-    const apiUrl = `https://us1.locationiq.com/v1/search?key=${apiKey}&q=${location}&format=json&limit=1`;
-    const data = await get(apiUrl);
-    if (getError) {
-      console.error("Geocode error: ", getError.message);
+    try {
+      const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
+      const apiUrl = `https://us1.locationiq.com/v1/search?key=${apiKey}&q=${location}&format=json&limit=1`;
+      const data = await get(apiUrl);
+
+      if (!data || data.length === 0) {
+        throw new Error("Location not found.");
+      }
+      return { lat: data[0].lat, lng: data[0].lon };
+    } catch (e) {
+      setGeoError(e);
       return;
     }
-
-    const lat = data[0].lat;
-    const lng = data[0].lon;
-    return { lat, lng };
   };
-  return { geoConvert };
+  return { geoConvert, geoError };
 };
 export default useGeo;
+ 

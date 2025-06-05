@@ -4,6 +4,7 @@ import styles from "./EventCard.module.css";
 import { Link } from "react-router";
 import _ from "lodash";
 import useGeo from "../../../hooks/useGeo";
+import Weather from "./Weather";
 
 const EventCard = ({
   id,
@@ -11,10 +12,16 @@ const EventCard = ({
   start,
   end,
   location,
+  image,
+  lat,
+  lng,
+  isFavorite,
   description,
+  category,
   handleInfoChange,
   deleteEvent,
   deleteError,
+  toggleFavorite,
 }) => {
   const [Editing, setEditing] = useState(false);
   const [message, setMessage] = useState("");
@@ -61,6 +68,14 @@ const EventCard = ({
 
   return (
     <div className={styles.eventCard}>
+      {image && (
+        <img
+          loading="lazy"
+          src={image}
+          alt="event image"
+          className={styles.eventImage}
+        />
+      )}
       {Editing ? (
         <form onSubmit={handleSubmit} className={styles.editForm}>
           <input
@@ -132,7 +147,11 @@ const EventCard = ({
         </form>
       ) : (
         <div>
+          <div className={styles.favorite} onClick={() => toggleFavorite(id)}>
+            {isFavorite ? "💖" : "🤍"}
+          </div>
           <h3>{title}</h3>
+          <p className={styles.category}>{category}</p>
           <div className={styles.time}>
             <label className={styles.timeIcon}>🕐</label>
             <p> {time(start, end)}</p>
@@ -141,16 +160,24 @@ const EventCard = ({
             <label className={styles.locationIcon}>📍</label>
             <p>{location}</p>
           </div>
-          <div className={styles.eventCardFooter}>
-            <Link to={`/${id}`} className={styles.button}>
-              See more
-            </Link>
-            <button onClick={() => setEditing(true)} className={styles.button}>
-              Edit
-            </button>
-            <button onClick={handleDelete} className={styles.button}>
-              Delete
-            </button>
+          <div>
+            <Weather geo={[lat, lng]} />
+          </div>
+          <div className={styles.cardFooterContainer}>
+            <div className={styles.eventCardFooter}>
+              <Link to={`/${id}`} className={styles.button}>
+                See more
+              </Link>
+              <button
+                onClick={() => setEditing(true)}
+                className={styles.button}
+              >
+                Edit
+              </button>
+              <button onClick={handleDelete} className={styles.button}>
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       )}

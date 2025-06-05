@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import styles from "./EventDetail.module.css";
+import styles from "./EventCard.module.css";
 
 const MapView = ({ geo, title, location }) => {
   return (

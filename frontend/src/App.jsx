@@ -38,6 +38,14 @@ function App() {
     await remove(eventApi, id);
     setEventData((prev) => prev.filter((event) => event.id !== id));
   };
+  const toggleFavorite = async (id) => {
+    const event = eventData.find((e) => e.id === id);
+    const updatedFavorite = { ...event, isFavorite: !event.isFavorite };
+    const updatedEvent = await patch(eventApi, id, updatedFavorite);
+    setEventData((prev) =>
+      prev.map((event) => (event.id === id ? updatedEvent : event))
+    );
+  };
   return (
     <>
       <BrowserRouter>
@@ -53,6 +61,7 @@ function App() {
                   loading={loading}
                   deleteEvent={deleteEvent}
                   deleteError={deleteError}
+                  toggleFavorite={toggleFavorite}
                 />
               }
             />
