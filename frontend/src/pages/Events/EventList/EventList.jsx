@@ -1,5 +1,4 @@
 import EventCard from "../../../components/Event/EventCard/EventCard";
-import CategoryCard from "../../../components/Event/CategoryCard/CategoryCard";
 import styles from "./EventList.module.css";
 import { useState } from "react";
 const EventList = ({
@@ -61,8 +60,10 @@ const EventList = ({
             className={styles.catFilter}
             onChange={(e) => setCatFilter(e.target.value)}
           >
-            {categories.map((c) => (
-              <option value={c}>{c}</option>
+            {categories.map((c, index) => (
+              <option key={index} value={c}>
+                {c}
+              </option>
             ))}
           </select>
 

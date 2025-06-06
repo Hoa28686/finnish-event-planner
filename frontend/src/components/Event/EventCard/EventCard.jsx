@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import _ from "lodash";
 import useGeo from "../../../hooks/useGeo";
 import Weather from "./Weather";
-
+import MapView from "./MapView";
 const EventCard = ({
   id,
   title,
@@ -27,8 +27,10 @@ const EventCard = ({
   const [message, setMessage] = useState("");
   const prevInfo = { title, start, end, location, description };
   const [newInfo, setNewInfo] = useState(prevInfo);
+  const [showDetail, setShowDetail] = useState(false);
   const { geoConvert } = useGeo();
 
+  const geo = [lat, lng];
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -146,7 +148,7 @@ const EventCard = ({
           </div>
         </form>
       ) : (
-        <div>
+        <>
           <div className={styles.favorite} onClick={() => toggleFavorite(id)}>
             {isFavorite ? "💖" : "🤍"}
           </div>
@@ -160,14 +162,46 @@ const EventCard = ({
             <label className={styles.locationIcon}>📍</label>
             <p>{location}</p>
           </div>
-          <div>
-            <Weather geo={[lat, lng]} />
-          </div>
-          <div className={styles.cardFooterContainer}>
+
+          <Weather geo={geo} />
+          <div className={styles.cardFooterBorder}></div>
+          {showDetail ? (
+            <>
+              {description && (
+                <>
+                  <h4>Notes</h4>
+                  <p>{description}</p>
+                </>
+              )}
+              {geo.length === 2 && (
+                <MapView geo={geo} title={title} location={location} />
+              )}
+              <div className={styles.eventCardFooter}>
+                <button
+                  onClick={() => setShowDetail(false)}
+                  className={styles.button}
+                >
+                  Minimize
+                </button>
+                <button
+                  onClick={() => setEditing(true)}
+                  className={styles.button}
+                >
+                  Edit
+                </button>
+                <button onClick={handleDelete} className={styles.button}>
+                  Delete
+                </button>
+              </div>
+            </>
+          ) : (
             <div className={styles.eventCardFooter}>
-              <Link to={`/${id}`} className={styles.button}>
+              <button
+                onClick={() => setShowDetail(true)}
+                className={styles.button}
+              >
                 See more
-              </Link>
+              </button>
               <button
                 onClick={() => setEditing(true)}
                 className={styles.button}
@@ -178,8 +212,8 @@ const EventCard = ({
                 Delete
               </button>
             </div>
-          </div>
-        </div>
+          )}
+        </>
       )}
       {message && <p className={styles.success}>{message}</p>}
     </div>
