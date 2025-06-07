@@ -8,6 +8,7 @@ import AddEvent from "./pages/AddEvent/AddEvent";
 import EventCalendar from "./pages/Calendar/Calendar";
 import useAxios from "./hooks/useAxios";
 import EventDetail from "./pages/Events/EventDetail/EventDetail";
+import MapAll from "./pages/Map/MapAll";
 
 function App() {
   const [eventData, setEventData] = useState([]);
@@ -58,13 +59,12 @@ function App() {
               element={
                 <EventList
                   eventData={eventData}
-                  handleInfoChange={handleInfoChange}
                   error={error}
                   loading={loading}
+                  handleInfoChange={handleInfoChange}
                   deleteEvent={deleteEvent}
                   deleteError={deleteError}
                   toggleFavorite={toggleFavorite}
-          
                 />
               }
             />
@@ -75,8 +75,17 @@ function App() {
             />
             <Route
               path="/calendar"
-              element={<EventCalendar eventData={eventData} />}
+              element={
+                <EventCalendar
+                  eventData={eventData}
+                  handleInfoChange={handleInfoChange}
+                  deleteEvent={deleteEvent}
+                  deleteError={deleteError}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
             />
+            <Route path="/map" element={<MapAll eventData={eventData} />} />
             <Route path="/about" element={<About />} />
           </Route>
         </Routes>

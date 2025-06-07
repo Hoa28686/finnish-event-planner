@@ -3,9 +3,9 @@ import styles from "./EventList.module.css";
 import { useState } from "react";
 const EventList = ({
   eventData,
-  handleInfoChange,
   error,
   loading,
+  handleInfoChange,
   deleteEvent,
   deleteError,
   toggleFavorite,

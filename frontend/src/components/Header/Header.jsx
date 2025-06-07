@@ -73,6 +73,15 @@ const Header = () => {
             <li>
               <NavLink
                 className={styles["nav-link"]}
+                to="/map"
+                onClick={hideMenu}
+              >
+                Map
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={styles["nav-link"]}
                 to="/about"
                 onClick={hideMenu}
               >
