@@ -45,6 +45,9 @@ const EventCalendar = ({ eventData }) => {
     });
     setSameDayEvents(matchEvents);
   };
+  const eventClickHandler = (event) => {
+    setSameDayEvents([event]);
+  };
 
   const eventPropGetter = (event) => {
     return {
@@ -69,14 +72,16 @@ const EventCalendar = ({ eventData }) => {
         onView={(newView) => setView(newView)}
         className={styles.calendar}
         selectable
-        onSelectEvent={dayClickHandler}
+        // onSelectEvent={dayClickHandler}
+        // onSelectSlot={dayClickHandler}
+        onSelectEvent={eventClickHandler}
         eventPropGetter={eventPropGetter}
       />
 
       {sameDayEvents.length > 0 ? (
         sameDayEvents.map((event) => <EventCard key={event.id} {...event} />)
       ) : (
-        <p>No events on this day</p>
+        <p>No events at this time</p>
       )}
     </div>
   );

@@ -11,9 +11,10 @@ import EventDetail from "./pages/Events/EventDetail/EventDetail";
 
 function App() {
   const [eventData, setEventData] = useState([]);
-  const eventApi = "http://localhost:3001/events";
+
   const { get, patch, loading, error } = useAxios();
   const { remove, error: deleteError } = useAxios();
+  const eventApi = "http://localhost:3001/events";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +47,7 @@ function App() {
       prev.map((event) => (event.id === id ? updatedEvent : event))
     );
   };
+
   return (
     <>
       <BrowserRouter>
@@ -62,6 +64,7 @@ function App() {
                   deleteEvent={deleteEvent}
                   deleteError={deleteError}
                   toggleFavorite={toggleFavorite}
+          
                 />
               }
             />

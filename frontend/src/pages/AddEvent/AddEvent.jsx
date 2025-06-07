@@ -2,8 +2,7 @@ import { useState } from "react";
 import styles from "./AddEvent.module.css";
 import useAxios from "../../hooks/useAxios";
 import { useNavigate } from "react-router";
-import { localTime } from "../../data/reusable";
-import useGeo from "../../hooks/useGeo";
+import { geoConvert, localTime } from "../../data/reusable";
 
 const emptyForm = {
   title: "",
@@ -17,7 +16,7 @@ const emptyForm = {
 const AddEvent = ({ eventApi, onAddEvent }) => {
   const [formData, setFormData] = useState(emptyForm);
   const { post, error: postError } = useAxios();
-  const { geoConvert } = useGeo();
+  const { formError, setFormError } = useState(null);
 
   const navigate = useNavigate();
 
@@ -29,7 +28,11 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { lat, lng } = await geoConvert(formData.location);
+    const { lat, lng, geoError } = await geoConvert(formData.location);
+    if (geoError) {
+      setFormError(geoError);
+      return;
+    }
     const newEvent = {
       ...formData,
       id: Date.now().toString(),
@@ -41,7 +44,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
 
     const addedEvent = await post(eventApi, newEvent);
     if (postError) {
-      console.error(postError.message);
+      setFormError(postError.message);
       return;
     }
 
@@ -125,6 +128,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
           Add
         </button>
       </form>
+      {formError && <p className={styles.error}>{formError}</p>}
     </>
   );
 };

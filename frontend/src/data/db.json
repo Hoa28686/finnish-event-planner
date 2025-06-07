@@ -8,11 +8,11 @@
       "end": "2025-06-17T12:00",
       "date": "2025-06-15",
       "location": "Töölönlahdenkatu 4, Helsinki",
-      "description": "Enjoy grilled food, music, and games with friends in one of Helsinki’s best parks.",
+      "description": "Enjoy grilled food, music, and games with friends in one of Helsinki’s best parks.dt",
       "lat": "60.1741861",
       "lng": "24.9378675",
       "image": "https://cdn.greenvelope.com/blog/wp-content/uploads/family-having-a-summer-BBQ-party.jpeg",
-      "category": "Food"
+      "category": "food"
     },
     {
       "id": "2",
@@ -23,10 +23,10 @@
       "date": "2025-06-18",
       "location": "Kaisaniemi Park, Helsinki",
       "description": "Code, chat, and connect with fellow devs under the summer sky at Kaisaniemi Park.",
-      "lat": 60.1754,
-      "lng": 24.9457,
+      "lat": "60.1749966",
+      "lng": "24.94609215707832",
       "image": "https://img.freepik.com/free-photo/santa-maddalena-dolomites-rangesouth-tyrol_661209-237.jpg",
-      "category": "Technology"
+      "category": "technology"
     },
     {
       "id": "3",
@@ -37,10 +37,10 @@
       "date": "2025-06-20",
       "location": "Löyly, Hernesaarenranta 4, Helsinki",
       "description": "Unwind with a warm sauna and cool sea dip at Löyly, topped off with sunset views.",
-      "lat": 60.1552,
-      "lng": 24.9211,
+      "lat": "60.1521774",
+      "lng": "24.930443681733106",
       "image": "https://img.freepik.com/free-photo/top-view-table-full-food_23-2149209253.jpg",
-      "category": "Wellness"
+      "category": "wellness"
     },
     {
       "id": "4",
@@ -54,7 +54,7 @@
       "lat": 60.1805,
       "lng": 24.9512,
       "image": "",
-      "category": "Shopping"
+      "category": "shopping"
     },
     {
       "id": "5",
@@ -68,7 +68,7 @@
       "lat": 60.1675,
       "lng": 24.9432,
       "image": "https://plus.unsplash.com/premium_photo-1683121447942-a62eb0aef48e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZXZlbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww",
-      "category": "Music"
+      "category": "music"
     },
     {
       "id": "6",
@@ -82,7 +82,7 @@
       "lat": 60.3078,
       "lng": 24.4997,
       "image": "https://www.climate-kic.org/wp-content/uploads/2024/03/INFORMA-Opinion-piece-image.png",
-      "category": "Outdoor"
+      "category": "outdoor"
     },
     {
       "id": "7",
@@ -96,7 +96,7 @@
       "lat": "60.18125585",
       "lng": "24.88372086490908",
       "image": "https://img.freepik.com/free-photo/artsy-woman-taking-photo-beach_53876-119855.jpg?ga=GA1.1.1754937419.1741896396&semt=ais_items_boosted&w=740",
-      "category": "Art"
+      "category": "art"
     },
     {
       "id": "8",
@@ -110,7 +110,7 @@
       "lat": 60.1632,
       "lng": 24.9323,
       "image": "https://img.freepik.com/free-photo/view-picnic-french-alpine-mountains_268835-900.jpg?ga=GA1.1.1754937419.1741896396&semt=ais_items_boosted&w=740",
-      "category": "Food"
+      "category": "food"
     },
     {
       "id": "9",
@@ -124,7 +124,7 @@
       "lat": 60.1565,
       "lng": 24.8631,
       "image": "https://img.freepik.com/free-photo/perfectly-ordered-gym-equipment-high-angle_23-2149872120.jpg?ga=GA1.1.1754937419.1741896396&semt=ais_items_boosted&w=740",
-      "category": "Wellness"
+      "category": "wellness"
     },
     {
       "id": "10",
@@ -138,97 +138,32 @@
       "lat": 60.1636,
       "lng": 24.9237,
       "image": "https://img.freepik.com/free-photo/friends-having-fun-with-traditional-games_23-2149332661.jpg?ga=GA1.1.1754937419.1741896396&semt=ais_items_boosted&w=740",
-      "category": "Games"
+      "category": "games"
     },
     {
       "id": "1749075379235",
       "title": "\\zx\\x",
-      "start": "2025-06-05T03:16",
-      "end": "2025-06-06T01:16",
-      "location": "Töölönlahdenkatu 4, Helsinki",
-      "description": "",
-      "image": "",
-      "category": "other",
-      "lat": 60.1741861,
-      "lng": 24.9378675,
-      "isFavorite": false
-    },
-    {
-      "id": "1749075452731",
-      "title": "xcvzv",
-      "start": "2025-06-05T01:20",
-      "end": "2025-06-06T01:17",
-      "location": "aleksanterinkatu 11, helsinki",
-      "description": "zf",
-      "image": "",
-      "category": "other",
-      "lat": 60.1690367,
-      "lng": 24.9469201,
-      "isFavorite": false
-    },
-    {
-      "id": "1749075522313",
-      "title": "asdasdf",
-      "start": "2025-06-13T01:18",
-      "end": "2025-06-11T01:18",
-      "location": "dfaf",
-      "description": "",
-      "image": "",
-      "category": "other",
-      "lat": 49.4624886,
-      "lng": 10.9941578,
-      "isFavorite": false
-    },
-    {
-      "id": "1749075592980",
-      "title": "xcv",
-      "start": "2025-06-13T01:19",
-      "end": "2025-06-10T01:19",
-      "location": "dfd",
-      "description": "",
-      "image": "",
-      "category": "other",
-      "lat": 14.032951,
-      "lng": 44.424548,
-      "isFavorite": false
-    },
-    {
-      "id": "1749078022176",
-      "title": "asfdsa",
-      "start": "2025-06-06T02:00",
-      "end": "2025-06-14T02:00",
-      "location": "afa",
-      "description": "",
-      "image": "",
-      "category": "other",
-      "lat": "41.9838088",
-      "lng": "8.7966629",
-      "isFavorite": false
-    },
-    {
-      "id": "1749078076533",
-      "title": "afdasf",
-      "start": "2025-06-12T02:01",
-      "end": "2025-06-21T02:01",
-      "location": "Pekankatu 5a, helsinki",
-      "description": "",
-      "image": "",
-      "category": "other",
-      "lat": "60.2515854",
-      "lng": "25.0148535",
-      "isFavorite": false
-    },
-    {
-      "id": "1749078988442",
-      "title": "adad",
-      "start": "2025-06-12T02:16",
-      "end": "2025-07-04T02:16",
-      "location": "Töölönlahdenkatu 4, Helsinki",
+      "start": "2025-06-07T03:16",
+      "end": "2025-06-13T01:16",
+      "location": "Töölönlahdenkatu 4,Helsinki",
       "description": "",
       "image": "",
       "category": "other",
       "lat": "60.1741861",
       "lng": "24.9378675",
+      "isFavorite": false
+    },
+    {
+      "id": "1749075452731",
+      "title": "xcvzv r5yt",
+      "start": "2025-06-14T01:20",
+      "end": "2025-06-21T01:17",
+      "location": "aleksanterinkatu 11, helsinki",
+      "description": "zf",
+      "image": "",
+      "category": "other",
+      "lat": "60.1690367",
+      "lng": "24.9469201",
       "isFavorite": false
     }
   ]

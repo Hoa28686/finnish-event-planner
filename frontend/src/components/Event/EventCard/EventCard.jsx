@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { localTime, time } from "../../../data/reusable";
+import { geoConvert, localTime, time } from "../../../data/reusable";
 import styles from "./EventCard.module.css";
 import { Link } from "react-router";
 import _ from "lodash";
-import useGeo from "../../../hooks/useGeo";
+
 import Weather from "./Weather";
 import MapView from "./MapView";
 const EventCard = ({
@@ -22,13 +22,12 @@ const EventCard = ({
   deleteEvent,
   deleteError,
   toggleFavorite,
+  handleMessage,
 }) => {
   const [Editing, setEditing] = useState(false);
-  const [message, setMessage] = useState("");
   const prevInfo = { title, start, end, location, description };
   const [newInfo, setNewInfo] = useState(prevInfo);
   const [showDetail, setShowDetail] = useState(false);
-  const { geoConvert } = useGeo();
 
   const geo = [lat, lng];
   const handleChange = (e) => {
@@ -41,16 +40,20 @@ const EventCard = ({
     e.preventDefault();
 
     if (!newInfo.title || !newInfo.start || !newInfo.end || !newInfo.location) {
-      setMessage("All fields are required.");
+      handleMessage("All fields are required.");
       return;
     }
-    const { lat, lng } = await geoConvert(newInfo.location);
+    const { lat, lng, geoError } = await geoConvert(newInfo.location);
+    if (geoError) {
+      handleMessage(geoError);
+      return;
+    }
+
     const updatedInfo = { ...newInfo, lat, lng };
 
     handleInfoChange(id, updatedInfo);
     setEditing(false);
-    setMessage("Saved successfully!");
-    setTimeout(() => setMessage(""), 1500);
+    handleMessage("Saved successfully!");
   };
 
   const isSaveDisabled = newInfo === "" || _.isEqual(newInfo, prevInfo);
@@ -61,11 +64,12 @@ const EventCard = ({
   };
 
   const handleDelete = async () => {
-    deleteEvent(id);
+    await deleteEvent(id);
     if (deleteError) {
-      console.error(deleteError.message);
+      handleMessage(deleteError.message);
       return;
     }
+    handleMessage("Deleted successfully!");
   };
 
   return (
@@ -215,7 +219,6 @@ const EventCard = ({
           )}
         </>
       )}
-      {message && <p className={styles.success}>{message}</p>}
     </div>
   );
 };

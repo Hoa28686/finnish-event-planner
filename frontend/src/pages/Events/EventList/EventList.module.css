@@ -17,6 +17,21 @@
 .error {
   color: #ff4500;
 }
+.success {
+  color: #12cc01;
+  font-weight: bold;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: var(--body-background);
+  box-shadow: 0 0 2px #a7a6a6;
+  width: 100%;
+  position: fixed;
+  z-index: 200;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .filterContainer {
   width: 100%;
   display: flex;

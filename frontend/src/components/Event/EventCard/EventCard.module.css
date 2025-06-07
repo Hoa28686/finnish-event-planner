@@ -114,9 +114,6 @@
 .button:hover {
   text-decoration: underline;
 }
-.success {
-  color: green;
-}
 
 .editForm {
   width: 100%;
@@ -150,7 +147,7 @@
 }
 
 .mapView {
-  margin-block:1rem;
+  margin-block: 1rem;
   height: 20rem;
   width: 100%;
   z-index: 10;

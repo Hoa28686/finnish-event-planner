@@ -13,11 +13,16 @@ const EventList = ({
   const [searchValue, setSearchValue] = useState("");
   const [catFilter, setCatFilter] = useState("all categories");
   const [favFilter, setFavFilter] = useState(false);
-
+  const [message, setMessage] = useState("");
   const categories = [
     "all categories",
     ...new Set(eventData.map((e) => e.category)),
   ];
+
+  const handleMessage = (msg) => {
+    setMessage(msg);
+    setTimeout(() => setMessage(""), 2000);
+  };
 
   const searchHandle = (event) => {
     setSearchValue(event.target.value);
@@ -45,7 +50,7 @@ const EventList = ({
 
   return (
     <>
-      <h1>Event Category</h1>
+      {message && <p className={styles.success}>{message}</p>}
       <div className={styles.filterContainer}>
         <input
           className={styles.search}
@@ -89,6 +94,7 @@ const EventList = ({
             deleteEvent={deleteEvent}
             deleteError={deleteError}
             toggleFavorite={toggleFavorite}
+            handleMessage={handleMessage}
           />
         ))}
       </div>
