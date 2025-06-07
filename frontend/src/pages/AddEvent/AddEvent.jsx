@@ -102,18 +102,20 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
           className={styles.input}
           required
         />
-        {/* <select name="category" >Category</select>
-
-        <input
-          placeholder="Category"
-          type="text"
-          
-          value={formData.category}
+        <select
           onChange={handleChange}
+          name="category"
           className={styles.input}
-          
-        />
-         */}
+        >
+          <option value="">Category</option>
+          <option value="">
+            <input
+              placeholder="Category"
+              type="text"
+              value={formData.category}
+            />
+          </option>
+        </select>
 
         <textarea
           placeholder="Description"

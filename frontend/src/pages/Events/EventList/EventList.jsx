@@ -3,6 +3,7 @@ import styles from "./EventList.module.css";
 import { useState } from "react";
 const EventList = ({
   eventData,
+  categories,
   error,
   loading,
   handleInfoChange,
@@ -14,10 +15,6 @@ const EventList = ({
   const [catFilter, setCatFilter] = useState("all categories");
   const [favFilter, setFavFilter] = useState(false);
   const [message, setMessage] = useState("");
-  const categories = [
-    "all categories",
-    ...new Set(eventData.map((e) => e.category)),
-  ];
 
   const handleMessage = (msg) => {
     setMessage(msg);

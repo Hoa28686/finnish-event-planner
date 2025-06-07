@@ -49,6 +49,10 @@ function App() {
     );
   };
 
+  const categories = [
+    "all categories",
+    ...new Set(eventData.map((e) => e.category)),
+  ];
   return (
     <>
       <BrowserRouter>
@@ -59,6 +63,7 @@ function App() {
               element={
                 <EventList
                   eventData={eventData}
+                  categories={categories}
                   error={error}
                   loading={loading}
                   handleInfoChange={handleInfoChange}
@@ -71,7 +76,13 @@ function App() {
             <Route path="/:id" element={<EventDetail />} />
             <Route
               path="/add-event"
-              element={<AddEvent eventApi={eventApi} onAddEvent={addEvent} />}
+              element={
+                <AddEvent
+                  categories={categories}
+                  eventApi={eventApi}
+                  onAddEvent={addEvent}
+                />
+              }
             />
             <Route
               path="/calendar"
