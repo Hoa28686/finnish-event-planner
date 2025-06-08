@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AddEvent.module.css";
 import useAxios from "../../hooks/useAxios";
 import { useNavigate } from "react-router";
 import { geoConvert, localTime } from "../../data/reusable";
+import useCategory from "../../hooks/useCategory";
 
 const emptyForm = {
   title: "",
@@ -11,26 +12,42 @@ const emptyForm = {
   location: "",
   description: "",
   image: "",
-  category: "other",
+  category: "others",
 };
-const AddEvent = ({ eventApi, onAddEvent }) => {
+const AddEvent = ({
+  eventApi,
+  onAddEvent,
+  categories,
+  onAddCat,
+  handleMessage,
+  message,
+}) => {
   const [formData, setFormData] = useState(emptyForm);
   const { post, error: postError } = useAxios();
-  const { formError, setFormError } = useState(null);
+
+  const {
+    addingCat,
+    newCat,
+    setNewCat,
+    handleChange,
+    handleAddCat,
+    handleCatCancel,
+    isAddDisabled,
+  } = useCategory({
+    categories,
+    setUpdate: setFormData,
+    onAddCat,
+    handleMessage,
+  });
 
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { lat, lng, geoError } = await geoConvert(formData.location);
     if (geoError) {
-      setFormError(geoError);
+      handleMessage(geoError);
       return;
     }
     const newEvent = {
@@ -44,7 +61,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
 
     const addedEvent = await post(eventApi, newEvent);
     if (postError) {
-      setFormError(postError.message);
+      handleMessage(postError.message);
       return;
     }
 
@@ -102,20 +119,49 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
           className={styles.input}
           required
         />
-        <select
-          onChange={handleChange}
-          name="category"
-          className={styles.input}
-        >
-          <option value="">Category</option>
-          <option value="">
+
+        <label className={styles.label}>Category</label>
+        {addingCat ? (
+          <>
             <input
-              placeholder="Category"
               type="text"
-              value={formData.category}
+              placeholder="Create category"
+              name="newCat"
+              value={newCat}
+              onChange={(e) => setNewCat(e.target.value)}
+              className={styles.input}
+              required
             />
-          </option>
-        </select>
+            <div className={styles.catBtns}>
+              <button onClick={handleCatCancel} className={styles.catBtn}>
+                Cancel
+              </button>
+              <button
+                onClick={handleAddCat}
+                disabled={isAddDisabled}
+                className={`${styles.catBtn} ${
+                  isAddDisabled ? styles.disabled : ""
+                }`}
+              >
+                Add
+              </button>
+            </div>
+          </>
+        ) : (
+          <select
+            name="category"
+            onChange={handleChange}
+            value={formData.category}
+            className={`${styles.input} ${styles.categories}`}
+          >
+            {categories.map((c, index) => (
+              <option key={index} value={c}>
+                {c}
+              </option>
+            ))}
+            <option value="create">create new category</option>
+          </select>
+        )}
 
         <textarea
           placeholder="Description"
@@ -130,7 +176,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
           Add
         </button>
       </form>
-      {formError && <p className={styles.error}>{formError}</p>}
+      {message && <p className={styles.error}>{message}</p>}
     </>
   );
 };

@@ -6,9 +6,11 @@ import _ from "lodash";
 
 import Weather from "./Weather";
 import MapView from "./MapView";
+import useCategory from "../../../hooks/useCategory";
 const EventCard = ({
   id,
   title,
+  category,
   start,
   end,
   location,
@@ -17,24 +19,35 @@ const EventCard = ({
   lng,
   isFavorite,
   description,
-  category,
+  categories,
   handleInfoChange,
   deleteEvent,
   deleteError,
   toggleFavorite,
   handleMessage,
+  onAddCat,
 }) => {
   const [Editing, setEditing] = useState(false);
-  const prevInfo = { title, start, end, location, description };
+  const prevInfo = { title, category, start, end, location, description };
   const [newInfo, setNewInfo] = useState(prevInfo);
   const [showDetail, setShowDetail] = useState(false);
 
-  const geo = [lat, lng];
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const {
+    addingCat,
+    newCat,
+    setNewCat,
+    handleChange,
+    handleAddCat,
+    handleCatCancel,
+    isAddDisabled,
+  } = useCategory({
+    categories,
+    setUpdate: setNewInfo,
+    onAddCat,
+    handleMessage,
+  });
 
-    setNewInfo((prev) => ({ ...prev, [name]: value }));
-  };
+  const geo = [lat, lng];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,6 +105,49 @@ const EventCard = ({
             onChange={handleChange}
             className={styles.input}
           />
+
+          <label className={styles.label}>Category</label>
+          {addingCat ? (
+            <>
+              <input
+                type="text"
+                placeholder="Create category"
+                name="newCat"
+                value={newCat}
+                onChange={(e) => setNewCat(e.target.value)}
+                className={styles.input}
+                required
+              />
+              <div className={styles.catBtns}>
+                <button onClick={handleCatCancel} className={styles.catBtn}>
+                  Cancel
+                </button>
+                <button
+                  onClick={handleAddCat}
+                  disabled={isAddDisabled}
+                  className={`${styles.catBtn} ${
+                    isAddDisabled ? styles.disabled : ""
+                  }`}
+                >
+                  Add
+                </button>
+              </div>
+            </>
+          ) : (
+            <select
+              name="category"
+              onChange={handleChange}
+              value={newInfo.category}
+              className={`${styles.input} ${styles.categories}`}
+            >
+              {categories.map((c, index) => (
+                <option key={index} value={c}>
+                  {c}
+                </option>
+              ))}
+              <option value="create">create new category</option>
+            </select>
+          )}
 
           <div className={`${styles.input} ${styles.editTime}`}>
             <label>From</label>

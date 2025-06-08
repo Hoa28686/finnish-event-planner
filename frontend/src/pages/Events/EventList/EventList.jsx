@@ -10,16 +10,13 @@ const EventList = ({
   deleteEvent,
   deleteError,
   toggleFavorite,
+  onAddCat,
+  message,
+  handleMessage,
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const [catFilter, setCatFilter] = useState("all categories");
   const [favFilter, setFavFilter] = useState(false);
-  const [message, setMessage] = useState("");
-
-  const handleMessage = (msg) => {
-    setMessage(msg);
-    setTimeout(() => setMessage(""), 2000);
-  };
 
   const searchHandle = (event) => {
     setSearchValue(event.target.value);
@@ -62,6 +59,7 @@ const EventList = ({
             className={styles.catFilter}
             onChange={(e) => setCatFilter(e.target.value)}
           >
+            <option value="all categories">all categories</option>
             {categories.map((c, index) => (
               <option key={index} value={c}>
                 {c}
@@ -87,11 +85,13 @@ const EventList = ({
           <EventCard
             key={event.id}
             {...event}
+            categories={categories}
             handleInfoChange={handleInfoChange}
             deleteEvent={deleteEvent}
             deleteError={deleteError}
             toggleFavorite={toggleFavorite}
             handleMessage={handleMessage}
+            onAddCat={onAddCat}
           />
         ))}
       </div>

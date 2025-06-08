@@ -12,7 +12,7 @@
       "lat": "60.1741861",
       "lng": "24.9378675",
       "image": "https://cdn.greenvelope.com/blog/wp-content/uploads/family-having-a-summer-BBQ-party.jpeg",
-      "category": "food"
+      "category": "others"
     },
     {
       "id": "2",
@@ -148,7 +148,7 @@
       "location": "Töölönlahdenkatu 4,Helsinki",
       "description": "",
       "image": "",
-      "category": "other",
+      "category": "others",
       "lat": "60.1741861",
       "lng": "24.9378675",
       "isFavorite": true
@@ -161,9 +161,74 @@
       "location": "aleksanterinkatu 11, helsinki",
       "description": "zf",
       "image": "",
-      "category": "other",
+      "category": "others",
       "lat": "60.1690367",
       "lng": "24.9469201",
+      "isFavorite": false
+    },
+    {
+      "id": "1749403350562",
+      "title": "asdadf",
+      "start": "2025-06-18T20:22",
+      "end": "2025-06-20T20:22",
+      "location": "Töölönlahdenkatu 4, Helsinki",
+      "description": "",
+      "image": "",
+      "category": "xxc",
+      "lat": "60.1741861",
+      "lng": "24.9378675",
+      "isFavorite": false
+    },
+    {
+      "id": "1749404142075",
+      "title": "erqw",
+      "start": "2025-06-17T20:35",
+      "end": "2025-06-19T20:35",
+      "location": "sdfd",
+      "description": "",
+      "image": "",
+      "category": "addddfdssdf",
+      "lat": "-20.27687985",
+      "lng": "-50.21550201557881",
+      "isFavorite": false
+    },
+    {
+      "id": "1749410410767",
+      "title": "ASDD",
+      "start": "2025-06-11T22:19",
+      "end": "2025-06-20T22:19",
+      "location": "espoo",
+      "description": "",
+      "image": "",
+      "category": "music",
+      "lat": "60.2049651",
+      "lng": "24.6559808",
+      "isFavorite": false
+    },
+    {
+      "id": "1749412232242",
+      "title": "sdsd",
+      "start": "2025-06-11T22:50",
+      "end": "2025-07-03T22:50",
+      "location": "Pekankatu 5A,helsinki",
+      "description": "",
+      "image": "",
+      "category": "addddfdssdf",
+      "lat": "60.2515854",
+      "lng": "25.0148535",
+      "isFavorite": false
+    },
+    {
+      "id": "1749414542187",
+      "title": "werwer",
+      "start": "2025-06-13T23:28",
+      "end": "2025-06-20T23:28",
+      "location": "Töölönlahdenkatu 4, Helsinki",
+      "description": "",
+      "image": "",
+      "category": "games",
+      "lat": "60.1741861",
+      "lng": "24.9378675",
       "isFavorite": false
     }
   ]

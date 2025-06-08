@@ -9,17 +9,26 @@ import EventCalendar from "./pages/Calendar/Calendar";
 import useAxios from "./hooks/useAxios";
 import EventDetail from "./pages/Events/EventDetail/EventDetail";
 import MapAll from "./pages/Map/MapAll";
+import { constructFrom } from "date-fns";
 
 function App() {
   const [eventData, setEventData] = useState([]);
-
+  const [categories, setCategories] = useState([]);
   const { get, patch, loading, error } = useAxios();
   const { remove, error: deleteError } = useAxios();
+  const [message, setMessage] = useState("");
+
+  const handleMessage = (msg) => {
+    setMessage(msg);
+    setTimeout(() => setMessage(""), 2000);
+  };
+
   const eventApi = "http://localhost:3001/events";
 
   useEffect(() => {
     const fetchData = async () => {
       let data = await get(eventApi);
+      setCategories([...new Set(data.map((e) => e.category))]);
       setEventData(data);
     };
     fetchData();
@@ -49,10 +58,11 @@ function App() {
     );
   };
 
-  const categories = [
-    "all categories",
-    ...new Set(eventData.map((e) => e.category)),
-  ];
+  const onAddCat = (newCat) => {
+    if (!categories.includes(newCat)) {
+      setCategories((prev) => [...prev, newCat]);
+    }
+  };
   return (
     <>
       <BrowserRouter>
@@ -70,17 +80,23 @@ function App() {
                   deleteEvent={deleteEvent}
                   deleteError={deleteError}
                   toggleFavorite={toggleFavorite}
+                  onAddCat={onAddCat}
+                  message={message}
+                  handleMessage={handleMessage}
                 />
               }
             />
-            <Route path="/:id" element={<EventDetail />} />
+            {/* <Route path="/:id" element={<EventDetail />} /> */}
             <Route
               path="/add-event"
               element={
                 <AddEvent
                   categories={categories}
+                  onAddCat={onAddCat}
                   eventApi={eventApi}
                   onAddEvent={addEvent}
+                  message={message}
+                  handleMessage={handleMessage}
                 />
               }
             />
