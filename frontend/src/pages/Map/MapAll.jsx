@@ -5,7 +5,7 @@ import { time } from "../../data/reusable";
 
 const MapAll = ({ eventData }) => {
   if (!eventData || eventData.length === 0) {
-    return <p>Loading map.....</p>;
+    return <p class={styles.loading}>Loading map.....</p>;
   }
   const geo = [eventData[0].lat, eventData[0].lng];
   return (

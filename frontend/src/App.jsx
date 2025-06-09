@@ -3,11 +3,10 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Root from "./pages/Root";
 import About from "./pages/About/About";
-import EventList from "./pages/Events/EventList/EventList";
+import EventList from "./pages/EventList/EventList";
 import AddEvent from "./pages/AddEvent/AddEvent";
 import EventCalendar from "./pages/Calendar/Calendar";
 import useAxios from "./hooks/useAxios";
-import EventDetail from "./pages/Events/EventDetail/EventDetail";
 import MapAll from "./pages/Map/MapAll";
 import { constructFrom } from "date-fns";
 

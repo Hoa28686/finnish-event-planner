@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useAxios from "../../../hooks/useAxios";
+import useAxios from "../../hooks/useAxios";
 import styles from "./EventCard.module.css";
 
 const Weather = ({ geo }) => {

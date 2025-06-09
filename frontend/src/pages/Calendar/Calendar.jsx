@@ -6,7 +6,7 @@ import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 import enUS from "date-fns/locale/en-US";
 
-import EventCard from "../../components/Event/EventCard/EventCard";
+import EventCard from "../../components/EventCard/EventCard";
 import styles from "./Calendar.module.css";
 import { categoryColors } from "../../data/reusable";
 import { useEffect, useState } from "react";

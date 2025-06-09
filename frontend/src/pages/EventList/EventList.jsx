@@ -1,4 +1,4 @@
-import EventCard from "../../../components/Event/EventCard/EventCard";
+import EventCard from "../../components/EventCard/EventCard";
 import styles from "./EventList.module.css";
 import { useState } from "react";
 const EventList = ({

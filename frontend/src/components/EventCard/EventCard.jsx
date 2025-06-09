@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { geoConvert, localTime, time } from "../../../data/reusable";
+import { geoConvert, localTime, time } from "../../data/reusable";
 import styles from "./EventCard.module.css";
 import { Link } from "react-router";
 import _ from "lodash";
 
 import Weather from "./Weather";
 import MapView from "./MapView";
-import useCategory from "../../../hooks/useCategory";
+import useCategory from "../../hooks/useCategory";
 const EventCard = ({
   id,
   title,
