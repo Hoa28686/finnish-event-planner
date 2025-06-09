@@ -28,7 +28,15 @@ const EventCard = ({
   onAddCat,
 }) => {
   const [Editing, setEditing] = useState(false);
-  const prevInfo = { title, category, start, end, location, description };
+  const prevInfo = {
+    title,
+    category,
+    start,
+    end,
+    location,
+    image,
+    description,
+  };
   const [newInfo, setNewInfo] = useState(prevInfo);
   const [showDetail, setShowDetail] = useState(false);
 
@@ -106,7 +114,6 @@ const EventCard = ({
             className={styles.input}
           />
 
-          <label className={styles.label}>Category</label>
           {addingCat ? (
             <>
               <input
@@ -134,19 +141,22 @@ const EventCard = ({
               </div>
             </>
           ) : (
-            <select
-              name="category"
-              onChange={handleChange}
-              value={newInfo.category}
-              className={`${styles.input} ${styles.categories}`}
-            >
-              {categories.map((c, index) => (
-                <option key={index} value={c}>
-                  {c}
-                </option>
-              ))}
-              <option value="create">create new category</option>
-            </select>
+            <div className={`${styles.input} ${styles.categories}`}>
+              <label className={styles.label}>Category</label>
+              <select
+                name="category"
+                onChange={handleChange}
+                value={newInfo.category}
+                className={styles.select}
+              >
+                {categories.map((c, index) => (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                ))}
+                <option value="create">create new category</option>
+              </select>
+            </div>
           )}
 
           <div className={`${styles.input} ${styles.editTime}`}>
@@ -176,6 +186,14 @@ const EventCard = ({
             type="text"
             name="location"
             value={newInfo.location}
+            onChange={handleChange}
+            className={styles.input}
+          />
+          <input
+            placeholder="Image url"
+            type="text"
+            name="image"
+            value={newInfo.image}
             onChange={handleChange}
             className={styles.input}
           />

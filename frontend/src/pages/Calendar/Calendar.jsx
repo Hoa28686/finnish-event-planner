@@ -29,6 +29,9 @@ const EventCalendar = ({
   deleteEvent,
   deleteError,
   toggleFavorite,
+  onAddCat,
+  categories,
+  handleMessage,
 }) => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState("month");
@@ -86,7 +89,6 @@ const EventCalendar = ({
         onView={(newView) => setView(newView)}
         className={styles.calendar}
         selectable
-        // onSelectEvent={dayClickHandler}
         onSelectSlot={dayClickHandler}
         onSelectEvent={eventClickHandler}
         eventPropGetter={eventPropGetter}
@@ -101,6 +103,9 @@ const EventCalendar = ({
               deleteEvent={deleteEvent}
               deleteError={deleteError}
               toggleFavorite={toggleFavorite}
+              handleMessage={handleMessage}
+              onAddCat={onAddCat}
+              categories={categories}
             />
           ))}
         </div>

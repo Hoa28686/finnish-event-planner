@@ -230,6 +230,45 @@
       "lat": "60.1741861",
       "lng": "24.9378675",
       "isFavorite": false
+    },
+    {
+      "id": "1749418298408",
+      "title": "esrwe",
+      "start": "2025-06-12T00:31",
+      "end": "2025-06-19T00:31",
+      "location": "erwer",
+      "description": "",
+      "image": "",
+      "category": "others",
+      "lat": "3.64742",
+      "lng": "42.95552",
+      "isFavorite": false
+    },
+    {
+      "id": "1749418321183",
+      "title": "qqqqqqqqqq",
+      "start": "2025-06-12T00:31",
+      "end": "2025-06-19T00:31",
+      "location": "we",
+      "description": "",
+      "image": "https://cdn.greenvelope.com/blog/wp-content/uploads/family-having-a-summer-BBQ-party.jpeg",
+      "category": "others",
+      "lat": "48.1565472",
+      "lng": "14.0243752",
+      "isFavorite": false
+    },
+    {
+      "id": "1749418724518",
+      "title": "wqq",
+      "start": "2025-06-21T00:38",
+      "end": "2025-06-27T00:38",
+      "location": "espoo",
+      "description": "",
+      "image": "https://cdn.greenvelope.com/blog/wp-content/uploads/family-having-a-summer-BBQ-party.jpeg",
+      "category": "wellness",
+      "lat": "60.2049651",
+      "lng": "24.6559808",
+      "isFavorite": false
     }
   ]
 }

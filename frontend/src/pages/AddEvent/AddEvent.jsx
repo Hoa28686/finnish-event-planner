@@ -83,7 +83,50 @@ const AddEvent = ({
           required
           className={styles.input}
         />
-
+        {addingCat ? (
+          <>
+            <input
+              type="text"
+              placeholder="Create category"
+              name="newCat"
+              value={newCat}
+              onChange={(e) => setNewCat(e.target.value)}
+              className={styles.input}
+              required
+            />
+            <div className={styles.catBtns}>
+              <button onClick={handleCatCancel} className={styles.catBtn}>
+                Cancel
+              </button>
+              <button
+                onClick={handleAddCat}
+                disabled={isAddDisabled}
+                className={`${styles.catBtn} ${
+                  isAddDisabled ? styles.disabled : ""
+                }`}
+              >
+                Add
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className={`${styles.input} ${styles.categories}`}>
+            <label className={styles.label}>Category</label>
+            <select
+              name="category"
+              onChange={handleChange}
+              value={formData.category}
+              className={styles.select}
+            >
+              {categories.map((c, index) => (
+                <option key={index} value={c}>
+                  {c}
+                </option>
+              ))}
+              <option value="create">create new category</option>
+            </select>
+          </div>
+        )}
         <div className={`${styles.input} ${styles.time}`}>
           <label>From</label>
           <input
@@ -119,49 +162,14 @@ const AddEvent = ({
           className={styles.input}
           required
         />
-
-        <label className={styles.label}>Category</label>
-        {addingCat ? (
-          <>
-            <input
-              type="text"
-              placeholder="Create category"
-              name="newCat"
-              value={newCat}
-              onChange={(e) => setNewCat(e.target.value)}
-              className={styles.input}
-              required
-            />
-            <div className={styles.catBtns}>
-              <button onClick={handleCatCancel} className={styles.catBtn}>
-                Cancel
-              </button>
-              <button
-                onClick={handleAddCat}
-                disabled={isAddDisabled}
-                className={`${styles.catBtn} ${
-                  isAddDisabled ? styles.disabled : ""
-                }`}
-              >
-                Add
-              </button>
-            </div>
-          </>
-        ) : (
-          <select
-            name="category"
-            onChange={handleChange}
-            value={formData.category}
-            className={`${styles.input} ${styles.categories}`}
-          >
-            {categories.map((c, index) => (
-              <option key={index} value={c}>
-                {c}
-              </option>
-            ))}
-            <option value="create">create new category</option>
-          </select>
-        )}
+        <input
+          placeholder="Image url"
+          type="text"
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
+          className={styles.input}
+        />
 
         <textarea
           placeholder="Description"

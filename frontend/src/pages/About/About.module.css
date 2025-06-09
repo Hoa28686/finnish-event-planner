@@ -1,0 +1,42 @@
+.section {
+  margin-block: 2rem;
+}
+.sectionTitle {
+  font-size: var(--sub-title);
+  margin-bottom: 0.5rem;
+}
+
+.pageLink {
+  color: #930093;
+  font-weight: bold;
+}
+.pageLink:hover {
+  color: var(--text-color);
+}
+.pageLink:visited {
+  color: #008009;
+}
+
+.sectionList {
+  list-style: none;
+  line-height: 1.8;
+}
+.sectionList li {
+  padding-left: 1rem;
+  position: relative;
+}
+.sectionList li:before {
+  content: ">";
+  font-family: var(--second-font);
+  font-size: 0.8rem;
+  padding-right: 10px;
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  transform: rotate(10deg);
+}
+@media screen and (min-width: 768px) {
+  .sectionList li:before {
+    top: 0.3rem;
+  }
+}

@@ -26,6 +26,7 @@ const EventList = ({
     const search = searchValue.toLowerCase();
     const matchedSearch =
       event.title.toLowerCase().includes(search) ||
+      event.location.toLowerCase().includes(search) ||
       event.description.toLowerCase().includes(search);
     const matchedFavorite = favFilter ? event.isFavorite : true;
     const matchedCategory =

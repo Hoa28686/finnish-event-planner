@@ -4,7 +4,8 @@ const useCategory = ({ categories, setUpdate, handleMessage, onAddCat }) => {
   const [addingCat, setAddingCat] = useState(false);
   const [newCat, setNewCat] = useState("");
   const newCatText = newCat.trim().toLowerCase();
-  const isAddDisabled = newCatText === "" || categories.includes(newCatText);
+  const isAddDisabled =
+    newCatText === "" || (categories && categories.includes(newCatText));
 
   useEffect(() => {
     if (categories.includes(newCatText)) {

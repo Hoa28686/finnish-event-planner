@@ -109,6 +109,9 @@ function App() {
                   deleteEvent={deleteEvent}
                   deleteError={deleteError}
                   toggleFavorite={toggleFavorite}
+                  handleMessage={handleMessage}
+                  onAddCat={onAddCat}
+                  categories={categories}
                 />
               }
             />

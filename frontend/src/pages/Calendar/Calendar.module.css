@@ -20,6 +20,7 @@
 }
 
 :global(.rbc-toolbar) {
+  width: 100%;
   flex-direction: column;
   margin-bottom: 2rem;
   color: var(--text-color);
@@ -54,16 +55,17 @@
 }
 
 @media screen and (min-width: 768px) {
-  :global(.rbc-toolbar) {
-    flex-direction: row;
-  }
   .calendar {
     font-size: 1rem;
   }
 }
 @media screen and (min-width: 992px) {
-  .calendar {
-    width: 80%;
+  :global(.rbc-toolbar) {
+    flex-direction: row;
+  }
+  .calendarContainer {
+    width: 90%;
+    margin: auto;
   }
   :global(.rbc-month-row) {
     min-height: 7rem;

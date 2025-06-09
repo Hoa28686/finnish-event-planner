@@ -15,12 +15,20 @@
   padding: 0.5rem;
   margin: 0.3rem;
 }
-.label {
-  align-self: flex-start;
-  padding: 0.5rem;
-}
+
 .categories {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.select {
   text-transform: capitalize;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: inherit;
+  background-color: inherit;
+  color: inherit;
 }
 .catBtns {
   align-self: flex-end;
