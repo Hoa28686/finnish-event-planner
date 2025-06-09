@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AddEvent.module.css";
 import useAxios from "../../hooks/useAxios";
 import { useNavigate } from "react-router";
+import { geoConvert, localTime } from "../../data/reusable";
+import useCategory from "../../hooks/useCategory";
 
 const emptyForm = {
   title: "",
@@ -10,49 +12,44 @@ const emptyForm = {
   location: "",
   description: "",
   image: "",
-  category: "other",
+  category: "others",
 };
-const AddEvent = ({ eventApi, onAddEvent }) => {
+const AddEvent = ({
+  eventApi,
+  onAddEvent,
+  categories,
+  onAddCat,
+  handleMessage,
+  message,
+}) => {
   const [formData, setFormData] = useState(emptyForm);
-  const [timeError, setTimeError] = useState("");
-  const { get, error: getError } = useAxios();
   const { post, error: postError } = useAxios();
 
+  const {
+    addingCat,
+    newCat,
+    setNewCat,
+    handleChange,
+    handleAddCat,
+    handleCatCancel,
+    isAddDisabled,
+  } = useCategory({
+    categories,
+    setUpdate: setFormData,
+    onAddCat,
+    handleMessage,
+  });
+
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const geoConvert = async (location) => {
-    const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
-    const apiUrl = `https://us1.locationiq.com/v1/search?key=${apiKey}&q=${location}&format=json&limit=1`;
-    const data = await get(apiUrl);
-    if (getError) {
-      console.error("Geocode error: ", getError.message);
-      return;
-    }
-    const lat = parseFloat(data[0].lat);
-    const lng = parseFloat(data[0].lon);
-    return { lat, lng };
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const now = new Date();
-    const start = new Date(formData.start);
-    const end = new Date(formData.end);
-    if (start < now || start >= end) {
-      setTimeError(
-        "Start time must be in the future, and end time must be after start time. "
-      );
-      // setFormData(emptyForm);
+    const { lat, lng, geoError } = await geoConvert(formData.location);
+    if (geoError) {
+      handleMessage(geoError);
       return;
     }
-
-    const { lat, lng } = await geoConvert(formData.location);
     const newEvent = {
       ...formData,
       id: Date.now().toString(),
@@ -64,7 +61,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
 
     const addedEvent = await post(eventApi, newEvent);
     if (postError) {
-      console.error(postError.message);
+      handleMessage(postError.message);
       return;
     }
 
@@ -86,7 +83,50 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
           required
           className={styles.input}
         />
-
+        {addingCat ? (
+          <>
+            <input
+              type="text"
+              placeholder="Create category"
+              name="newCat"
+              value={newCat}
+              onChange={(e) => setNewCat(e.target.value)}
+              className={styles.input}
+              required
+            />
+            <div className={styles.catBtns}>
+              <button onClick={handleCatCancel} className={styles.catBtn}>
+                Cancel
+              </button>
+              <button
+                onClick={handleAddCat}
+                disabled={isAddDisabled}
+                className={`${styles.catBtn} ${
+                  isAddDisabled ? styles.disabled : ""
+                }`}
+              >
+                Add
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className={`${styles.input} ${styles.categories}`}>
+            <label className={styles.label}>Category</label>
+            <select
+              name="category"
+              onChange={handleChange}
+              value={formData.category}
+              className={styles.select}
+            >
+              {categories.map((c, index) => (
+                <option key={index} value={c}>
+                  {c}
+                </option>
+              ))}
+              <option value="create">create new category</option>
+            </select>
+          </div>
+        )}
         <div className={`${styles.input} ${styles.time}`}>
           <label>From</label>
           <input
@@ -95,6 +135,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
             value={formData.start}
             onChange={handleChange}
             className={styles.start}
+            min={localTime()}
             required
           />
         </div>
@@ -107,6 +148,7 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
             value={formData.end}
             onChange={handleChange}
             className={styles.end}
+            min={formData.start ? formData.start : localTime()}
             required
           />
         </div>
@@ -120,18 +162,14 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
           className={styles.input}
           required
         />
-        {/* <select name="category" >Category</select>
-
         <input
-          placeholder="Category"
+          placeholder="Image url"
           type="text"
-          
-          value={formData.category}
+          name="image"
+          value={formData.image}
           onChange={handleChange}
           className={styles.input}
-          
         />
-         */}
 
         <textarea
           placeholder="Description"
@@ -145,8 +183,8 @@ const AddEvent = ({ eventApi, onAddEvent }) => {
         <button type="submit" className={styles.button}>
           Add
         </button>
-        {timeError && <p className={styles.error}>{timeError}</p>}
       </form>
+      {message && <p className={styles.error}>{message}</p>}
     </>
   );
 };

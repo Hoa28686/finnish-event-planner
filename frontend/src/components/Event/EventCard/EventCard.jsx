@@ -1,43 +1,80 @@
 import { useState } from "react";
-import { time } from "../../../data/reusable";
+import { geoConvert, localTime, time } from "../../../data/reusable";
 import styles from "./EventCard.module.css";
 import { Link } from "react-router";
 import _ from "lodash";
 
-
+import Weather from "./Weather";
+import MapView from "./MapView";
+import useCategory from "../../../hooks/useCategory";
 const EventCard = ({
   id,
   title,
+  category,
   start,
   end,
   location,
+  image,
+  lat,
+  lng,
+  isFavorite,
   description,
+  categories,
   handleInfoChange,
   deleteEvent,
   deleteError,
+  toggleFavorite,
+  handleMessage,
+  onAddCat,
 }) => {
   const [Editing, setEditing] = useState(false);
-  const [message, setMessage] = useState("");
-  const prevInfo = { title, start, end, location, description };
-  const [newInfo, setNewInfo] = useState(prevInfo);
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setNewInfo((prev) => ({ ...prev, [name]: value }));
+  const prevInfo = {
+    title,
+    category,
+    start,
+    end,
+    location,
+    image,
+    description,
   };
+  const [newInfo, setNewInfo] = useState(prevInfo);
+  const [showDetail, setShowDetail] = useState(false);
 
-  const handleSubmit = (e) => {
+  const {
+    addingCat,
+    newCat,
+    setNewCat,
+    handleChange,
+    handleAddCat,
+    handleCatCancel,
+    isAddDisabled,
+  } = useCategory({
+    categories,
+    setUpdate: setNewInfo,
+    onAddCat,
+    handleMessage,
+  });
+
+  const geo = [lat, lng];
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!newInfo.title || !newInfo.start || !newInfo.end || !newInfo.location) {
-      setMessage("All fields are required.");
+      handleMessage("All fields are required.");
+      return;
+    }
+    const { lat, lng, geoError } = await geoConvert(newInfo.location);
+    if (geoError) {
+      handleMessage(geoError);
       return;
     }
 
-    handleInfoChange(id, newInfo);
+    const updatedInfo = { ...newInfo, lat, lng };
+
+    handleInfoChange(id, updatedInfo);
     setEditing(false);
-    setMessage("Saved successfully!");
-    setTimeout(() => setMessage(""), 1500);
+    handleMessage("Saved successfully!");
   };
 
   const isSaveDisabled = newInfo === "" || _.isEqual(newInfo, prevInfo);
@@ -48,15 +85,24 @@ const EventCard = ({
   };
 
   const handleDelete = async () => {
-    deleteEvent(id);
+    await deleteEvent(id);
     if (deleteError) {
-      console.error(deleteError.message);
+      handleMessage(deleteError.message);
       return;
     }
+    handleMessage("Deleted successfully!");
   };
 
   return (
     <div className={styles.eventCard}>
+      {image && (
+        <img
+          loading="lazy"
+          src={image}
+          alt="event image"
+          className={styles.eventImage}
+        />
+      )}
       {Editing ? (
         <form onSubmit={handleSubmit} className={styles.editForm}>
           <input
@@ -68,6 +114,51 @@ const EventCard = ({
             className={styles.input}
           />
 
+          {addingCat ? (
+            <>
+              <input
+                type="text"
+                placeholder="Create category"
+                name="newCat"
+                value={newCat}
+                onChange={(e) => setNewCat(e.target.value)}
+                className={styles.input}
+                required
+              />
+              <div className={styles.catBtns}>
+                <button onClick={handleCatCancel} className={styles.catBtn}>
+                  Cancel
+                </button>
+                <button
+                  onClick={handleAddCat}
+                  disabled={isAddDisabled}
+                  className={`${styles.catBtn} ${
+                    isAddDisabled ? styles.disabled : ""
+                  }`}
+                >
+                  Add
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className={`${styles.input} ${styles.categories}`}>
+              <label className={styles.label}>Category</label>
+              <select
+                name="category"
+                onChange={handleChange}
+                value={newInfo.category}
+                className={styles.select}
+              >
+                {categories.map((c, index) => (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                ))}
+                <option value="create">create new category</option>
+              </select>
+            </div>
+          )}
+
           <div className={`${styles.input} ${styles.editTime}`}>
             <label>From</label>
             <input
@@ -75,6 +166,7 @@ const EventCard = ({
               name="start"
               value={newInfo.start}
               onChange={handleChange}
+              min={localTime()}
             />
           </div>
 
@@ -84,6 +176,7 @@ const EventCard = ({
               type="datetime-local"
               name="end"
               value={newInfo.end}
+              min={newInfo.start ? newInfo.start : localTime()}
               onChange={handleChange}
             />
           </div>
@@ -93,6 +186,14 @@ const EventCard = ({
             type="text"
             name="location"
             value={newInfo.location}
+            onChange={handleChange}
+            className={styles.input}
+          />
+          <input
+            placeholder="Image url"
+            type="text"
+            name="image"
+            value={newInfo.image}
             onChange={handleChange}
             className={styles.input}
           />
@@ -125,8 +226,12 @@ const EventCard = ({
           </div>
         </form>
       ) : (
-        <div>
+        <>
+          <div className={styles.favorite} onClick={() => toggleFavorite(id)}>
+            {isFavorite ? "💖" : "🤍"}
+          </div>
           <h3>{title}</h3>
+          <p className={styles.category}>{category}</p>
           <div className={styles.time}>
             <label className={styles.timeIcon}>🕐</label>
             <p> {time(start, end)}</p>
@@ -135,20 +240,59 @@ const EventCard = ({
             <label className={styles.locationIcon}>📍</label>
             <p>{location}</p>
           </div>
-          <div className={styles.eventCardFooter}>
-            <Link to={`/${id}`} className={styles.button}>
-              See more
-            </Link>
-            <button onClick={() => setEditing(true)} className={styles.button}>
-              Edit
-            </button>
-            <button onClick={handleDelete} className={styles.button}>
-              Delete
-            </button>
-          </div>
-        </div>
+
+          <Weather geo={geo} />
+          <div className={styles.cardFooterBorder}></div>
+          {showDetail ? (
+            <>
+              {description && (
+                <>
+                  <h4>Notes</h4>
+                  <p>{description}</p>
+                </>
+              )}
+              {geo.length === 2 && (
+                <MapView geo={geo} title={title} location={location} />
+              )}
+              <div className={styles.eventCardFooter}>
+                <button
+                  onClick={() => setShowDetail(false)}
+                  className={styles.button}
+                >
+                  Minimize
+                </button>
+                <button
+                  onClick={() => setEditing(true)}
+                  className={styles.button}
+                >
+                  Edit
+                </button>
+                <button onClick={handleDelete} className={styles.button}>
+                  Delete
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className={styles.eventCardFooter}>
+              <button
+                onClick={() => setShowDetail(true)}
+                className={styles.button}
+              >
+                See more
+              </button>
+              <button
+                onClick={() => setEditing(true)}
+                className={styles.button}
+              >
+                Edit
+              </button>
+              <button onClick={handleDelete} className={styles.button}>
+                Delete
+              </button>
+            </div>
+          )}
+        </>
       )}
-      {message && <p className={styles.success}>{message}</p>}
     </div>
   );
 };

@@ -8,16 +8,27 @@ import AddEvent from "./pages/AddEvent/AddEvent";
 import EventCalendar from "./pages/Calendar/Calendar";
 import useAxios from "./hooks/useAxios";
 import EventDetail from "./pages/Events/EventDetail/EventDetail";
+import MapAll from "./pages/Map/MapAll";
+import { constructFrom } from "date-fns";
 
 function App() {
   const [eventData, setEventData] = useState([]);
-  const eventApi = "http://localhost:3001/events";
+  const [categories, setCategories] = useState([]);
   const { get, patch, loading, error } = useAxios();
   const { remove, error: deleteError } = useAxios();
+  const [message, setMessage] = useState("");
+
+  const handleMessage = (msg) => {
+    setMessage(msg);
+    setTimeout(() => setMessage(""), 2000);
+  };
+
+  const eventApi = "http://localhost:3001/events";
 
   useEffect(() => {
     const fetchData = async () => {
       let data = await get(eventApi);
+      setCategories([...new Set(data.map((e) => e.category))]);
       setEventData(data);
     };
     fetchData();
@@ -38,6 +49,20 @@ function App() {
     await remove(eventApi, id);
     setEventData((prev) => prev.filter((event) => event.id !== id));
   };
+  const toggleFavorite = async (id) => {
+    const event = eventData.find((e) => e.id === id);
+    const updatedFavorite = { ...event, isFavorite: !event.isFavorite };
+    const updatedEvent = await patch(eventApi, id, updatedFavorite);
+    setEventData((prev) =>
+      prev.map((event) => (event.id === id ? updatedEvent : event))
+    );
+  };
+
+  const onAddCat = (newCat) => {
+    if (!categories.includes(newCat)) {
+      setCategories((prev) => [...prev, newCat]);
+    }
+  };
   return (
     <>
       <BrowserRouter>
@@ -48,23 +73,49 @@ function App() {
               element={
                 <EventList
                   eventData={eventData}
-                  handleInfoChange={handleInfoChange}
+                  categories={categories}
                   error={error}
                   loading={loading}
+                  handleInfoChange={handleInfoChange}
                   deleteEvent={deleteEvent}
                   deleteError={deleteError}
+                  toggleFavorite={toggleFavorite}
+                  onAddCat={onAddCat}
+                  message={message}
+                  handleMessage={handleMessage}
                 />
               }
             />
-            <Route path="/:id" element={<EventDetail />} />
+            {/* <Route path="/:id" element={<EventDetail />} /> */}
             <Route
               path="/add-event"
-              element={<AddEvent eventApi={eventApi} onAddEvent={addEvent} />}
+              element={
+                <AddEvent
+                  categories={categories}
+                  onAddCat={onAddCat}
+                  eventApi={eventApi}
+                  onAddEvent={addEvent}
+                  message={message}
+                  handleMessage={handleMessage}
+                />
+              }
             />
             <Route
               path="/calendar"
-              element={<EventCalendar eventData={eventData} />}
+              element={
+                <EventCalendar
+                  eventData={eventData}
+                  handleInfoChange={handleInfoChange}
+                  deleteEvent={deleteEvent}
+                  deleteError={deleteError}
+                  toggleFavorite={toggleFavorite}
+                  handleMessage={handleMessage}
+                  onAddCat={onAddCat}
+                  categories={categories}
+                />
+              }
             />
+            <Route path="/map" element={<MapAll eventData={eventData} />} />
             <Route path="/about" element={<About />} />
           </Route>
         </Routes>

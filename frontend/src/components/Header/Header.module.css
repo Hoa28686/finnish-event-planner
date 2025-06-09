@@ -8,6 +8,22 @@
   transition: background-color 0.4s;
   padding: 1rem;
 }
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #616fff,
+    #bc62fc,
+    #659ef5,
+    #bc62fc,
+    #5f3df6
+  );
+  opacity: 0.5;
+  z-index: -100;
+  box-shadow: var(--shadow);
+}
 
 .headerContainer {
   height: var(--header-height);

@@ -8,12 +8,42 @@
 
 .input {
   width: 100%;
+  font-size: inherit;
   background: var(--header-background);
   border: var(--border);
   border-radius: 0.2rem;
   padding: 0.5rem;
   margin: 0.3rem;
 }
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.select {
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: inherit;
+  background-color: inherit;
+  color: inherit;
+}
+.catBtns {
+  align-self: flex-end;
+  display: flex;
+  gap: 1rem;
+}
+.catBtn {
+  color: inherit;
+  background-color: transparent;
+}
+.disabled {
+  color: #6d6d6d;
+  cursor: not-allowed;
+}
+.label,
 .input::placeholder,
 .time,
 .start,
