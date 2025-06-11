@@ -15,6 +15,7 @@ function App() {
   const { get, patch, loading, error } = useAxios();
   const { remove, error: deleteError } = useAxios();
   const [message, setMessage] = useState("");
+  const [sameDayEvents, setSameDayEvents] = useState([]);
 
   const handleMessage = (msg) => {
     setMessage(msg);
@@ -52,6 +53,7 @@ function App() {
     const event = eventData.find((e) => e.id === id);
     const updatedFavorite = { ...event, isFavorite: !event.isFavorite };
     const updatedEvent = await patch(eventApi, id, updatedFavorite);
+
     setEventData((prev) =>
       prev.map((event) => (event.id === id ? updatedEvent : event))
     );

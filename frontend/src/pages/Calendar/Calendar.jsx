@@ -32,24 +32,19 @@ const EventCalendar = ({
   handleMessage,
   onAddCat,
 }) => {
+
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState("month");
-
   const [sameDayEvents, setSameDayEvents] = useState([]);
 
-  const convertedEvents = eventData.map((event) => ({
-    ...event,
-    start: new Date(event.start),
-    end: new Date(event.end),
-  }));
   useEffect(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
 
-    const todayEvents = convertedEvents.filter(
-      (event) => event.start < tomorrow && event.end >= today
+    const todayEvents = eventData.filter(
+      (event) => new Date(event.start) < tomorrow && new Date(event.end) > today
     );
     setSameDayEvents(todayEvents);
   }, [eventData]);
@@ -57,14 +52,21 @@ const EventCalendar = ({
   const dayClickHandler = (slotInfo) => {
     const slotStart = slotInfo.start;
     const slotEnd = slotInfo.end;
-    const matchEvents = convertedEvents.filter(
-      (event) => event.start <= slotEnd && event.end >= slotStart
+    
+    const matchEvents = eventData.filter(
+      (event) =>
+        new Date(event.start) < slotEnd && new Date(event.end) > slotStart
     );
     setSameDayEvents(matchEvents);
   };
   const eventClickHandler = (event) => {
     setSameDayEvents([event]);
   };
+  const convertedEvents = eventData.map((event) => ({
+    ...event,
+    start: new Date(event.start),
+    end: new Date(event.end),
+  }));
   const eventPropGetter = (event) => {
     return {
       style: {
