@@ -23,6 +23,7 @@
 .showEmoji {
   position: absolute;
   top: 0;
+  left: -12.5rem;
   background: var(--body-background);
   border-radius: 0.5rem;
   box-shadow: 0 0 0.2rem #8c8c8c;
@@ -76,4 +77,10 @@
 }
 .noEmoji:hover {
   text-shadow: 0 0 0.5rem #979696;
+}
+
+@media screen and (min-width: 992px) {
+  .showEmoji {
+    left: 0rem;
+  }
 }
