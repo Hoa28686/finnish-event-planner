@@ -68,7 +68,8 @@ const EventCalendar = ({
   const eventPropGetter = (event) => {
     return {
       style: {
-        backgroundColor: event.color,
+        backgroundColor: `hexToRgba(${event.color}, 0.2)`,
+        color: "black",
       },
     };
   };
