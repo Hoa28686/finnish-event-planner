@@ -24,13 +24,13 @@ const localizer = dateFnsLocalizer({
 
 const EventCalendar = ({
   eventData,
+  categories,
   handleInfoChange,
   deleteEvent,
   deleteError,
   toggleFavorite,
-  onAddCat,
-  categories,
   handleMessage,
+  onAddCat,
 }) => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState("month");
@@ -68,8 +68,8 @@ const EventCalendar = ({
   const eventPropGetter = (event) => {
     return {
       style: {
-        backgroundColor: `hexToRgba(${event.color}, 0.2)`,
-        color: "black",
+        backgroundColor: `${event.color}80`,
+        color: "var(--text-color)",
       },
     };
   };
@@ -93,24 +93,22 @@ const EventCalendar = ({
         onSelectEvent={eventClickHandler}
         eventPropGetter={eventPropGetter}
       />
-      {sameDayEvents.length > 0 ? (
+      {sameDayEvents.length > 0 && (
         <div className={styles.eventList}>
           {sameDayEvents.map((event) => (
             <EventCard
               key={event.id}
               {...event}
+              categories={categories}
               handleInfoChange={handleInfoChange}
               deleteEvent={deleteEvent}
               deleteError={deleteError}
               toggleFavorite={toggleFavorite}
               handleMessage={handleMessage}
               onAddCat={onAddCat}
-              categories={categories}
             />
           ))}
         </div>
-      ) : (
-        <p>No events at this time</p>
       )}
     </div>
   );

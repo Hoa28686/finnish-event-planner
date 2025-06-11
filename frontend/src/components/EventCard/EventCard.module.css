@@ -205,12 +205,6 @@
   pointer-events: none;
 }
 
-.mapView {
-  margin-block: 1rem;
-  height: 20rem;
-  width: 100%;
-  z-index: 10;
-}
 @media screen and (min-width: 768px) {
   .eventCard {
     margin: 2rem;

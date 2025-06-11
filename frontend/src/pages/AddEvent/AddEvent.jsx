@@ -44,7 +44,7 @@ const AddEvent = ({
   });
 
   const navigate = useNavigate();
-  console.log(formData.emoji);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

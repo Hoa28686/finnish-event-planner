@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { geoConvert, localTime, time } from "../../data/reusable";
 import styles from "./EventCard.module.css";
-import { Link } from "react-router";
 import _ from "lodash";
-
 import Weather from "./Weather";
-import MapView from "./MapView";
 import useCategory from "../../hooks/useCategory";
 import EventEmoji from "../EventEmoji/EventEmoji";
+import Map from "../Map/Map";
+
 const EventCard = ({
   id,
   title,
@@ -280,7 +279,7 @@ const EventCard = ({
                 </>
               )}
               {geo.length === 2 && (
-                <MapView geo={geo} title={title} location={location} />
+                <Map center={geo} events={{ title, location }} single={true} />
               )}
               <div className={styles.eventCardFooter}>
                 <button

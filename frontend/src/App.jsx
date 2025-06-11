@@ -7,7 +7,7 @@ import EventList from "./pages/EventList/EventList";
 import AddEvent from "./pages/AddEvent/AddEvent";
 import EventCalendar from "./pages/Calendar/Calendar";
 import useAxios from "./hooks/useAxios";
-import MapAll from "./pages/Map/MapAll";
+import MapAll from "./pages/MapAll/MapAll";
 
 function App() {
   const [eventData, setEventData] = useState([]);
@@ -21,7 +21,8 @@ function App() {
     setTimeout(() => setMessage(""), 2000);
   };
 
-  const eventApi = "https://finnish-event-planner.onrender.com/events";
+  // const eventApi = "https://finnish-event-planner.onrender.com/events";
+  const eventApi = "http://localhost:3002/events";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -103,13 +104,13 @@ function App() {
               element={
                 <EventCalendar
                   eventData={eventData}
+                  categories={categories}
                   handleInfoChange={handleInfoChange}
                   deleteEvent={deleteEvent}
                   deleteError={deleteError}
                   toggleFavorite={toggleFavorite}
                   handleMessage={handleMessage}
                   onAddCat={onAddCat}
-                  categories={categories}
                 />
               }
             />

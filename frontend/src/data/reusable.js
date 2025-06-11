@@ -34,8 +34,8 @@ export const geoConvert = async (location) => {
     const data = res.data;
     // console.log(data);
 
-    const lat = data[0].lat;
-    const lng = data[0].lon;
+    const lat = parseFloat(data[0].lat).toFixed(5);
+    const lng = parseFloat(data[0].lon).toFixed(5);
     return { lat, lng, geoError: null };
   } catch (e) {
     return { lat: null, lng: null, geoError: "No locations found." };
