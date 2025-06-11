@@ -4,8 +4,8 @@ This is a simple event planner app that allows users to create, view, and manage
 
 ## Links and Live Page
 
-- [Frontend]()
-- [Backend (JSON Server API)]()
+- [Frontend](https://finnish-event-planner.vercel.app/)
+- [Backend (JSON Server API)](https://finnish-event-planner.onrender.com/events)
 
 ## 📝 Key Features
 

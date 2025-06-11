@@ -20,7 +20,7 @@ const About = () => {
             <li>
               <a
                 className={styles.pageLink}
-                href=""
+                href="https://finnish-event-planner.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -30,7 +30,7 @@ const About = () => {
             <li>
               <a
                 className={styles.pageLink}
-                href=""
+                href="https://finnish-event-planner.onrender.com/events"
                 target="_blank"
                 rel="noopener noreferrer"
               >
