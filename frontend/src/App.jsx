@@ -9,7 +9,6 @@ import EventCalendar from "./pages/Calendar/Calendar";
 import useAxios from "./hooks/useAxios";
 import MapAll from "./pages/Map/MapAll";
 
-
 function App() {
   const [eventData, setEventData] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -22,7 +21,7 @@ function App() {
     setTimeout(() => setMessage(""), 2000);
   };
 
-  const eventApi = "http://localhost:3001/events";
+  const eventApi = "https://finnish-event-planner.onrender.com/events";
 
   useEffect(() => {
     const fetchData = async () => {
