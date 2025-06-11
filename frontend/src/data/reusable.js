@@ -17,6 +17,7 @@ export const time = (startDate, endDate) => {
   return timeRange;
 };
 
+// min(localTime) for dateTime-local input
 export const localTime = () => {
   const now = new Date();
   const difToUTC = now.getTimezoneOffset();
@@ -24,13 +25,14 @@ export const localTime = () => {
   return new Date(local).toISOString().slice(0, 16);
 };
 
+// for map and weather
 export const geoConvert = async (location) => {
   try {
     const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
     const apiUrl = `https://us1.locationiq.com/v1/search?key=${apiKey}&q=${location}&format=json&limit=1`;
     const res = await axios.get(apiUrl);
     const data = res.data;
-    console.log(data);
+    // console.log(data);
 
     const lat = data[0].lat;
     const lng = data[0].lon;

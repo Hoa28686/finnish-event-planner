@@ -4,6 +4,7 @@ import useAxios from "../../hooks/useAxios";
 import { useNavigate } from "react-router";
 import { geoConvert, localTime } from "../../data/reusable";
 import useCategory from "../../hooks/useCategory";
+import EventEmoji from "../../components/EventEmoji/EventEmoji";
 
 const emptyForm = {
   title: "",
@@ -13,6 +14,8 @@ const emptyForm = {
   description: "",
   image: "",
   category: "others",
+  color: "#0EA5E9",
+  emoji: "",
 };
 const AddEvent = ({
   eventApi,
@@ -41,7 +44,7 @@ const AddEvent = ({
   });
 
   const navigate = useNavigate();
-
+  console.log(formData.emoji);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -74,15 +77,31 @@ const AddEvent = ({
     <>
       <h1>Add new event</h1>
       <form onSubmit={handleSubmit} className={styles.addForm}>
-        <input
-          placeholder="Title"
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          required
-          className={styles.input}
-        />
+        <div className={`${styles.input} ${styles.titleContainer}`}>
+          <input
+            placeholder="Title"
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            className={styles.title}
+            required
+          />
+          <div className={styles.colorEmoji}>
+            <EventEmoji
+              name="emoji"
+              value={formData.emoji}
+              onChange={handleChange}
+            />
+            <input
+              type="color"
+              name="color"
+              value={formData.color}
+              onChange={handleChange}
+              className={styles.color}
+            />
+          </div>
+        </div>
         {addingCat ? (
           <>
             <input

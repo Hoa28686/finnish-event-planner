@@ -7,9 +7,12 @@ import _ from "lodash";
 import Weather from "./Weather";
 import MapView from "./MapView";
 import useCategory from "../../hooks/useCategory";
+import EventEmoji from "../EventEmoji/EventEmoji";
 const EventCard = ({
   id,
   title,
+  emoji,
+  color,
   category,
   start,
   end,
@@ -30,6 +33,8 @@ const EventCard = ({
   const [Editing, setEditing] = useState(false);
   const prevInfo = {
     title,
+    emoji,
+    color,
     category,
     start,
     end,
@@ -105,14 +110,31 @@ const EventCard = ({
       )}
       {Editing ? (
         <form onSubmit={handleSubmit} className={styles.editForm}>
-          <input
-            placeholder="Title"
-            type="text"
-            name="title"
-            value={newInfo.title}
-            onChange={handleChange}
-            className={styles.input}
-          />
+          <div className={`${styles.input} ${styles.titleContainer}`}>
+            <input
+              placeholder="Title"
+              type="text"
+              name="title"
+              value={newInfo.title}
+              onChange={handleChange}
+              className={styles.title}
+              required
+            />
+            <div className={styles.colorEmoji}>
+              <EventEmoji
+                name="emoji"
+                value={newInfo.emoji}
+                onChange={handleChange}
+              />
+              <input
+                type="color"
+                name="color"
+                value={newInfo.color}
+                onChange={handleChange}
+                className={styles.color}
+              />
+            </div>
+          </div>
 
           {addingCat ? (
             <>
@@ -230,7 +252,13 @@ const EventCard = ({
           <div className={styles.favorite} onClick={() => toggleFavorite(id)}>
             {isFavorite ? "💖" : "🤍"}
           </div>
-          <h3>{title}</h3>
+          <h3>
+            {title} {emoji}{" "}
+            <span
+              style={{ backgroundColor: color }}
+              className={styles.eventColor}
+            ></span>
+          </h3>
           <p className={styles.category}>{category}</p>
           <div className={styles.time}>
             <label className={styles.timeIcon}>🕐</label>

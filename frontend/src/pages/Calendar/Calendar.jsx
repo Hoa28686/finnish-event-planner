@@ -8,7 +8,6 @@ import enUS from "date-fns/locale/en-US";
 
 import EventCard from "../../components/EventCard/EventCard";
 import styles from "./Calendar.module.css";
-import { categoryColors } from "../../data/reusable";
 import { useEffect, useState } from "react";
 
 const locales = {
@@ -69,7 +68,7 @@ const EventCalendar = ({
   const eventPropGetter = (event) => {
     return {
       style: {
-        backgroundColor: categoryColors[event.category] || "#0EA5E9",
+        backgroundColor: event.color,
       },
     };
   };

@@ -1,0 +1,79 @@
+.emojiContainer {
+  position: relative;
+  display: inline-block;
+}
+.default {
+  color: inherit;
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.5;
+  background: var(--body-background);
+  border-radius: 50%;
+  font-size: 1.25rem;
+  transition: opacity 0.3s;
+  box-shadow: 0 0 0.2rem #c3c2c2;
+}
+.default:focus,
+.default:hover {
+  opacity: 1;
+}
+.activeEmoji {
+  opacity: 1;
+}
+.showEmoji {
+  position: absolute;
+  top: 0;
+  background: var(--body-background);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.2rem #8c8c8c;
+  z-index: 10;
+}
+.emojiCatContainer {
+  width: 15rem;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-bottom: 0.8rem;
+}
+.emojiCatContainer::-webkit-scrollbar {
+  height: 0.5rem;
+}
+.cat {
+  opacity: 0.5;
+  background: transparent;
+  font-size: 1.25rem;
+  padding: 0.3rem;
+  transition: opacity 0.3 ease;
+}
+.cat:focus,
+.cat:hover {
+  opacity: 1;
+  border-bottom: 1px solid grey;
+}
+.emojiGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.emoji {
+  color: inherit;
+  font-size: 1.25rem;
+  padding: 0.3rem;
+  transition: boxShadow 0.3s;
+  border-radius: 50%;
+  background: transparent;
+  transition: boxShadow 0.3s;
+}
+.emoji:focus,
+.emoji:hover {
+  box-shadow: 0 0 0.2rem #c3c2c2;
+}
+.noEmoji {
+  background: transparent;
+  font-weight: bold;
+  margin: auto;
+  width: 100%;
+  margin: 0.5rem;
+}
+.noEmoji:hover {
+  text-shadow: 0 0 0.5rem #979696;
+}
