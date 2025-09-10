@@ -6,7 +6,7 @@ const Weather = ({ geo }) => {
   const [weather, setWeather] = useState(null);
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${geo[0]}&lon=${geo[1]}&appid=${apiKey}`;
-  const { get, loading } = useAxios();
+  const { get, loading, error } = useAxios();
 
   useEffect(() => {
     if (geo.length === 2) {
@@ -18,7 +18,9 @@ const Weather = ({ geo }) => {
       fetchWeather();
     }
   }, [geo]);
-  if (loading) return <p>Loading weather forecast.....</p>;
+  if (error) return <p>{error.message}</p>;
+  if (loading || !weather.weather || !weather.main)
+    return <p>Loading weather forecast.....</p>;
   return (
     <div className={styles.weatherContainer}>
       <p>{weather.weather[0].description}</p>

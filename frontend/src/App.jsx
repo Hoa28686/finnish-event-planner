@@ -22,8 +22,7 @@ function App() {
     setTimeout(() => setMessage(""), 2000);
   };
 
-  // const eventApi = "https://finnish-event-planner.onrender.com/events";
-  const eventApi = "http://localhost:3002/events";
+  const eventApi = "https://finnish-event-planner.onrender.com/events";
 
   useEffect(() => {
     const fetchData = async () => {

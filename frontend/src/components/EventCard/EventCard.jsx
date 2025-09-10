@@ -89,12 +89,17 @@ const EventCard = ({
   };
 
   const handleDelete = async () => {
-    await deleteEvent(id);
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this card?"
+    );
+    if (confirmed) {
+      await deleteEvent(id);
+      handleMessage("Deleted successfully!");
+    }
     if (deleteError) {
       handleMessage(deleteError.message);
       return;
     }
-    handleMessage("Deleted successfully!");
   };
 
   return (
@@ -163,8 +168,11 @@ const EventCard = ({
             </>
           ) : (
             <div className={`${styles.input} ${styles.categories}`}>
-              <label className={styles.label}>Category</label>
+              <label htmlFor="category" className={styles.label}>
+                Category
+              </label>
               <select
+                id="category"
                 name="category"
                 onChange={handleChange}
                 value={newInfo.category}
