@@ -11,12 +11,12 @@ This is a simple event planner app that allows users to create, view, and manage
 
 ## 📝 Key Features
 
-- Create, edit, and delete event with ease
+- Create, edit, and delete events with ease
 - Search events by title, location or description
-- Get current weather forecasts at each event location
-- Upload image url to showcase events
+- View current weather forecasts at each event location
+- Upload image URLs to showcase events
 - Toggle between dark and light mode
-- Display all events on a calendar and map
+- Display all events on a calendar and map based on event time and location, respectively
 
 ## 🛠️ Technologies Used </h2>
 
